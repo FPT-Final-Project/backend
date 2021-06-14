@@ -3,6 +3,7 @@ import configs from "./configs";
 import db from "./configs/mongoose"
 const app = express();
 const { PORT } = configs;
+
 app.get("/", (req: any, res: any) => {
   res.send("The sedulous hyena ate the antelope!");
 });
