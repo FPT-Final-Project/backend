@@ -1,12 +1,12 @@
-import express from 'express';
+import express, { Express } from "express"
+import routes from "./src/routers"
 
-const app = express();
-const port = 3000;
 
-app.get('/', (req, res) => {
-  res.send('The sedulous hyena ate the antelope!');
-});
+const app: Express = express()
 
-app.listen(port, () => {
-  console.log(`server is listening on ${port}`);
+const PORT: string | number = process.env.PORT || 5000
+
+app.use(routes)
+app.listen(PORT, () => {
+    console.log(`server is listening on ${PORT}`);
 });
