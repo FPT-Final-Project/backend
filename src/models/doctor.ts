@@ -1,6 +1,5 @@
 import mongoose from "mongoose";
-import configs from "../configs";
-const { GENDERS } = configs;
+import {GENDERS} from "../configs";
 const doctorSchema = new mongoose.Schema(
   {
     email: {

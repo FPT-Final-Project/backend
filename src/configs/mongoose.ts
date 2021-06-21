@@ -1,7 +1,6 @@
 import mongoose from "mongoose";
-import configs from "./index";
+import {MONGO_DB_URL} from "./index";
 
-const { MONGO_DB_URL } = configs;
 export default {
   connect: () => {
     mongoose.set("useNewUrlParser", true);
