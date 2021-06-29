@@ -1,4 +1,4 @@
-import httpStatus from "http-status";
+import httpStatus from 'http-status';
 
 class ExtendableError extends Error {
   code: any;
@@ -21,9 +21,9 @@ class ExtendableError extends Error {
 class APIError extends ExtendableError {
   constructor({
     message,
-    code = null,
-    errors = null,
-    stack = null,
+    code = undefined,
+    errors = undefined,
+    stack = undefined,
     status = httpStatus.INTERNAL_SERVER_ERROR,
     isPublic = false,
   }) {

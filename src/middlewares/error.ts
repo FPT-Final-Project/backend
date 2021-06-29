@@ -1,6 +1,6 @@
-import httpStatus from "http-status";
-import { ValidationError } from "express-validation";
-import APIError from "../utils/ApiError";
+import httpStatus from 'http-status';
+import { ValidationError } from 'express-validation';
+import APIError from '../utils/ApiError';
 
 export const handler = (err, _req, res, _next) => {
     const response = {
@@ -17,8 +17,8 @@ export const converter = (err, req, res, _next) => {
     let convertedError = err;
     if (err instanceof ValidationError) {
       convertedError = new APIError({
-        message: "Invalid input data",
-        errors: err.details.body || err.details.query || err.details.params|| null as any ,
+        message: 'Invalid input data',
+        errors: err.details.body || err.details.query || err.details.params || undefined as any ,
         status: err.statusCode,
       });
     } else if (!(err instanceof APIError)) {
@@ -28,7 +28,7 @@ export const converter = (err, req, res, _next) => {
         stack: err.stack,
       });
     }
-  
+
     return handler(convertedError, req, res, _next);
   };
 export const  routeNotFound = (req, res, _next) => {

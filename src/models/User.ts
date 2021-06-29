@@ -1,6 +1,6 @@
-import mongoose from "mongoose";
-import { Document, Schema } from "mongoose";
-import { GENDERS } from "../configs";
+import mongoose from 'mongoose';
+import { Document, Schema } from 'mongoose';
+import { GENDERS } from '../configs';
 
 export interface IUser extends Document {
   _id: string;
@@ -67,10 +67,10 @@ const UserSchema: Schema = new Schema(
     job: {
       type: String,
     },
-    role: { 
+    role: {
         type: String,
         enum: ['patient', 'doctor', 'admin'],
-        default: 'patient', 
+        default: 'patient',
     },
     isDeleted: {
       type: Boolean,
@@ -78,4 +78,4 @@ const UserSchema: Schema = new Schema(
   },
   { timestamps: true }
 );
-export default mongoose.model<IUser>("User",UserSchema)
+export default mongoose.model<IUser>('User', UserSchema);

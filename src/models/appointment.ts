@@ -1,5 +1,5 @@
-import * as mongoose from "mongoose";
-import { Document, Schema } from "mongoose";
+import * as mongoose from 'mongoose';
+import { Document, Schema } from 'mongoose';
 /**
  * Appointment Interface
  */
@@ -26,4 +26,4 @@ export const AppointmentSchema: Schema = new Schema({
   updatedAt: { type: Number },
   isDeleted: { type: Boolean },
 });
-export default mongoose.model<IAppointment>("Appointment", AppointmentSchema);
+export default mongoose.model<IAppointment>('Appointment', AppointmentSchema);

@@ -1,16 +1,16 @@
-import APIError from "../utils/ApiError";
-import {User} from "../models"
-import httpStatus from "http-status";
-import bcrypt from "bcrypt";
-import _ from "lodash"
+import APIError from '../utils/ApiError';
+import { User } from '../models';
+import httpStatus from 'http-status';
+import bcrypt from 'bcrypt';
+import _ from 'lodash';
 
 const saltRounds = 10;
 
-const signup = async (firstName, lastName, email, password, role) =>{
+const signup = async (firstName, lastName, email, password, role) => {
     const user = await User.findOne({ email });
     if (user) {
         throw new APIError({
-          message: "Account already exists",
+          message: 'Account already exists',
           status: httpStatus.BAD_REQUEST,
         });
       }
@@ -21,27 +21,27 @@ const signup = async (firstName, lastName, email, password, role) =>{
       email,
       role,
       password: passwordHashed
-    })
-    return {email, firstName, lastName}
-}
-const login = async (email, password) => { 
-  const user = await User.findOne({email})
-  if (!user) { 
+    });
+    return {email, firstName, lastName};
+};
+const login = async (email, password) => {
+  const user = await User.findOne({email});
+  if (!user) {
     throw new APIError({
-      message: "Account not found",
+      message: 'Account not found',
       status: httpStatus.NOT_FOUND
-    })
+    });
   }
   const match = await bcrypt.compare(password, user.password);
   if (!match) {
     throw new APIError({
-      message: "Invalid password",
+      message: 'Invalid password',
       status: httpStatus.BAD_REQUEST,
-    })
+    });
   }
-  return _.pick(user,['gender', 'isOnline', 'role', '_id', 'firstName', 'lastName', 'avatar']);
-}
+  return _.pick(user, ['gender', 'isOnline', 'role', '_id', 'firstName', 'lastName', 'avatar']);
+};
 
 export default {
   signup, login
-}
+};

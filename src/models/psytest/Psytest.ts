@@ -1,5 +1,5 @@
-import  mongoose from "mongoose";
-import { Document, Schema } from "mongoose";
+import  mongoose from 'mongoose';
+import { Document, Schema } from 'mongoose';
 
 export interface IPsychologyTest extends Document  {
     _id: string;
@@ -21,5 +21,4 @@ export const PsyTestSchema: Schema = new Schema({
     isDeleted: { type: Boolean },
   });
 
-export default mongoose.model<IPsychologyTest>("PsyTest", PsyTestSchema)
-  
+export default mongoose.model<IPsychologyTest>('PsyTest', PsyTestSchema);

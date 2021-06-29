@@ -1,5 +1,5 @@
-import dotenv from "dotenv";
-import genders from "./genders";
+import dotenv from 'dotenv';
+import genders from './genders';
 
 dotenv.config();
 

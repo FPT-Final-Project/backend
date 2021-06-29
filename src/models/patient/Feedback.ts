@@ -26,4 +26,4 @@ export const FeedbackSchema: Schema = new Schema({
   updatedAt: { type: Number },
   isDeleted: { type: Boolean },
 });
-export default mongoose.model<IFeedback>("Feedback", FeedbackSchema)
+export default mongoose.model<IFeedback>('Feedback', FeedbackSchema);

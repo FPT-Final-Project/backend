@@ -4,7 +4,7 @@ import { Document, Schema } from 'mongoose';
 /**
  * Consulting Result Interface
  */
-export interface IResult  extends Document{
+export interface IResult  extends Document {
   _id: string;
   doctorId: string;
   patientId: string;
@@ -37,4 +37,4 @@ export const ResultSchema: Schema = new Schema({
   updatedAt: { type: Number },
   isDeleted: { type: Boolean },
 });
-export default mongoose.model<IResult>("Result", ResultSchema)
+export default mongoose.model<IResult>('Result', ResultSchema);

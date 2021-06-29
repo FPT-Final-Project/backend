@@ -1,14 +1,14 @@
-import mongoose from "mongoose";
-import { Document, Schema } from "mongoose";
+import mongoose from 'mongoose';
+import { Document, Schema } from 'mongoose';
 
-export interface IPsychologyResult extends Document{
+export interface IPsychologyResult extends Document {
     _id: string;
     psyTestId: string;
     patientId: string;
     result: number;
     createdAt: number;
   }
-  
+
 export const PsyResultSchema: Schema = new Schema({
     _id: { type: String, require: true },
     psyTestId: { type: String, require: true, index: true },
@@ -16,5 +16,4 @@ export const PsyResultSchema: Schema = new Schema({
     result: { type: Number, require: true, index: true },
     createdAt: { type: Number },
   });
-export default mongoose.model<IPsychologyResult>("PsyResult", PsyResultSchema);
-  
+export default mongoose.model<IPsychologyResult>('PsyResult', PsyResultSchema);

@@ -1,7 +1,7 @@
-import catchAsync from "../utils/catchAsync";
-import { NextFunction, Request, Response } from "express";
-import { authService } from "../services";
-import httpStatus from "http-status";
+import catchAsync from '../utils/catchAsync';
+import { NextFunction, Request, Response } from 'express';
+import { authService } from '../services';
+import httpStatus from 'http-status';
 
 const signup = catchAsync(
   async (req: Request, res: Response, _next: NextFunction) => {
@@ -20,7 +20,7 @@ const login = catchAsync(
   async (req: Request, res: Response, _next: NextFunction) => {
     const { email, password } = req.body;
     const user = await authService.login(email, password);
-    res.status(httpStatus.OK).json(user)
+    res.status(httpStatus.OK).json(user);
   }
 );
 

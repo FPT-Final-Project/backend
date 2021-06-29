@@ -1,5 +1,5 @@
-import mongoose from "mongoose";
-import { Document, Schema } from "mongoose";
+import mongoose from 'mongoose';
+import { Document, Schema } from 'mongoose';
 
 export  interface ISchedule extends Document {
   _id: string;
@@ -22,4 +22,4 @@ export const ScheduleSchema: Schema = new Schema(
   },
   { timestamps: true }
 );
-export default mongoose.model<ISchedule>("Schedule", ScheduleSchema)
+export default mongoose.model<ISchedule>('Schedule', ScheduleSchema);

@@ -1,5 +1,5 @@
-import mongoose from "mongoose"
-import { Document,Schema } from "mongoose"
+import mongoose from 'mongoose';
+import { Document, Schema } from 'mongoose';
 export interface IQuestion extends Document {
     _id: string;
     title: string;
@@ -9,7 +9,7 @@ export interface IQuestion extends Document {
     updatedAt: number;
     isDeletedAt: boolean;
   }
-  
+
   export const QuestionSchema: Schema = new Schema({
     _id: { type: String, require: true },
     title: { type: String, require: true },
@@ -20,4 +20,4 @@ export interface IQuestion extends Document {
     isDeletedAt: { type: Boolean },
   });
 
-  export default mongoose.model<IQuestion>("Question", QuestionSchema)
+  export default mongoose.model<IQuestion>('Question', QuestionSchema);

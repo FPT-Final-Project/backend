@@ -1,7 +1,7 @@
-import mongoose from "mongoose";
-import { Document, Schema } from "mongoose";
+import mongoose from 'mongoose';
+import { Document, Schema } from 'mongoose';
 
-export interface IComment extends Document{
+export interface IComment extends Document {
   _id: string;
   description: string;
   doctorId: string;
@@ -22,4 +22,4 @@ export const CommentSchema: Schema = new Schema(
   },
   { timestamps: true }
 );
-export default mongoose.model<IComment>("Comment", CommentSchema);
+export default mongoose.model<IComment>('Comment', CommentSchema);
