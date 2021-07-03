@@ -1,5 +1,6 @@
 import authController from './auth.controller';
-
+import questionController from "./question.controller"
 export {
-    authController
+    authController,
+    questionController
 };
