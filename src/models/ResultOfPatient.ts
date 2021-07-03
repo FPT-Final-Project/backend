@@ -1,9 +1,10 @@
-import * as mongoose from 'mongoose';
+import  mongoose from 'mongoose';
+import { Document, Schema } from 'mongoose';
 
 /**
  * Consulting Result Interface
  */
-export interface Result {
+export interface IResult  extends Document {
   _id: string;
   doctorId: string;
   patientId: string;
@@ -20,7 +21,7 @@ export interface Result {
   isDeleted: boolean;
 }
 
-export const ResultSchema = new mongoose.Schema({
+export const ResultSchema: Schema = new Schema({
   _id: { type: String, require: true },
   doctorId: { type: String, require: true },
   patientId: { type: String, require: true },
@@ -36,3 +37,4 @@ export const ResultSchema = new mongoose.Schema({
   updatedAt: { type: Number },
   isDeleted: { type: Boolean },
 });
+export default mongoose.model<IResult>('Result', ResultSchema);
