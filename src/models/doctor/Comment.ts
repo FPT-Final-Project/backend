@@ -1,5 +1,4 @@
-import mongoose from 'mongoose';
-import { Document, Schema } from 'mongoose';
+import mongoose, { Document, Schema } from 'mongoose';
 
 export interface IComment extends Document {
   _id: string;
@@ -20,6 +19,6 @@ export const CommentSchema: Schema = new Schema(
     updatedAt: { type: Number },
     isDeletedAt: { type: Boolean },
   },
-  { timestamps: true }
+  { timestamps: true },
 );
 export default mongoose.model<IComment>('Comment', CommentSchema);

@@ -26,4 +26,5 @@ export const AppointmentSchema: Schema = new Schema({
   updatedAt: { type: Number },
   isDeleted: { type: Boolean },
 });
+
 export default mongoose.model<IAppointment>('Appointment', AppointmentSchema);

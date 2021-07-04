@@ -1,7 +1,6 @@
-import mongoose from 'mongoose';
-import { Document, Schema } from 'mongoose';
+import mongoose, { Document, Schema } from 'mongoose';
 
-export  interface ISchedule extends Document {
+export interface ISchedule extends Document {
   _id: string;
   doctorId: string;
   fromTime: number;
@@ -10,6 +9,7 @@ export  interface ISchedule extends Document {
   updatedAt: number;
   isDeleted: boolean;
 }
+
 export const ScheduleSchema: Schema = new Schema(
   {
     _id: { type: String, require: true },
@@ -20,6 +20,7 @@ export const ScheduleSchema: Schema = new Schema(
     updatedAt: { type: Number },
     isDeleted: { type: Boolean },
   },
-  { timestamps: true }
+  { timestamps: true },
 );
+
 export default mongoose.model<ISchedule>('Schedule', ScheduleSchema);
