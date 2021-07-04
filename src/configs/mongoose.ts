@@ -10,7 +10,7 @@ export default {
     mongoose.connect(MONGO_DB_URL!);
     mongoose.connection.on('error', (err) => {
       console.error(err);
-      console.log('MongoDB connection failed: ' + MONGO_DB_URL);
+      console.log(`MongoDB connection failed: ${MONGO_DB_URL}`);
       process.exit();
     });
   },

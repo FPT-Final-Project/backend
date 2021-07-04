@@ -1,11 +1,12 @@
 import express, { NextFunction, Request, Response } from 'express';
 import cors from 'cors';
-import helmet  from 'helmet';
+import helmet from 'helmet';
 import morgan from 'morgan';
 import { PORT } from './configs';
 import db from './configs/mongoose';
 import routers from './routers';
 import { handler, converter, routeNotFound } from './middlewares/error';
+
 const corsOptions = { methods: ['GET', 'POST', 'PUT', 'DELETE'] };
 const app = express();
 app.use(helmet());
