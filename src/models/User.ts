@@ -1,6 +1,5 @@
-import mongoose from 'mongoose';
-import { Document, Schema } from 'mongoose';
-import { GENDERS } from '../configs';
+import mongoose, { Document, Schema } from 'mongoose';
+import { genders } from '../configs/genders';
 
 export interface IUser extends Document {
   _id: string;
@@ -20,6 +19,7 @@ export interface IUser extends Document {
   updatedAt: number;
   isDeleted: boolean;
 }
+
 const UserSchema: Schema = new Schema(
   {
     email: {
@@ -51,7 +51,7 @@ const UserSchema: Schema = new Schema(
     },
     gender: {
       type: String,
-      enum: GENDERS.genders,
+      enum: genders,
       default: 0,
     },
     phone: {
@@ -68,14 +68,15 @@ const UserSchema: Schema = new Schema(
       type: String,
     },
     role: {
-        type: String,
-        enum: ['patient', 'doctor', 'admin'],
-        default: 'patient',
+      type: String,
+      enum: ['patient', 'doctor', 'admin'],
+      default: 'patient',
     },
     isDeleted: {
       type: Boolean,
     },
   },
-  { timestamps: true }
+  { timestamps: true },
 );
+
 export default mongoose.model<IUser>('User', UserSchema);

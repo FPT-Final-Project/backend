@@ -1,10 +1,9 @@
-import  mongoose from 'mongoose';
-import { Document, Schema } from 'mongoose';
+import mongoose, { Document, Schema } from 'mongoose';
 
 /**
  * Consulting Result Interface
  */
-export interface IResult  extends Document {
+export interface IResult extends Document {
   _id: string;
   doctorId: string;
   patientId: string;
@@ -31,10 +30,11 @@ export const ResultSchema: Schema = new Schema({
       name: { type: String, require: true },
       description: { type: String, require: true },
       quantity: { type: Number, require: true },
-    }
+    },
   ],
   createdAt: { type: Number },
   updatedAt: { type: Number },
   isDeleted: { type: Boolean },
 });
+
 export default mongoose.model<IResult>('Result', ResultSchema);
