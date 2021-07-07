@@ -1,8 +1,13 @@
 import { NextFunction, Request, Response } from 'express';
 import httpStatus from 'http-status';
+<<<<<<< HEAD
 import catchAsync from '../utils/catchAsync';
 import { authService } from '../services';
 
+=======
+import jwt from 'jsonwebtoken';
+import { TOKEN_SECRET } from '../configs';
+>>>>>>> 9fda1a9 ( fix yanr lint)
 const signup = catchAsync(
   async (req: Request, res: Response, _next: NextFunction) => {
     const {
@@ -23,8 +28,14 @@ const login = catchAsync(
   async (req: Request, res: Response, _next: NextFunction) => {
     const { email, password } = req.body;
     const user = await authService.login(email, password);
+<<<<<<< HEAD
     res.status(httpStatus.OK).json(user);
   },
+=======
+    const accessToken = jwt.sign({id: user._id}, TOKEN_SECRET , { expiresIn: '1d' });
+    res.status(httpStatus.OK).json({user, accessToken});
+  }
+>>>>>>> 9fda1a9 ( fix yanr lint)
 );
 
 export default {
