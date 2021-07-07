@@ -1,7 +1,7 @@
-import { User } from "../models";
-import { getToken, verifyToken } from "../utils/jwt";
+import { User } from '../models';
+import { getToken, verifyToken } from '../utils/jwt';
 
-const isAuth = async (req, _res, next) => { 
+const isAuth = async (req, _res, next) => {
     try {
         const token = getToken(req);
         const decoded = verifyToken(token);
@@ -10,7 +10,7 @@ const isAuth = async (req, _res, next) => {
       } catch (err) {
         next(err);
       }
-}
+};
 export  {
     isAuth
-}
+};

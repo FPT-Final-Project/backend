@@ -2,8 +2,8 @@ import catchAsync from '../utils/catchAsync';
 import { NextFunction, Request, Response } from 'express';
 import { authService } from '../services';
 import httpStatus from 'http-status';
-import jwt from "jsonwebtoken";
-import {TOKEN_SECRET} from "../configs"
+import jwt from 'jsonwebtoken';
+import { TOKEN_SECRET } from '../configs';
 const signup = catchAsync(
   async (req: Request, res: Response, _next: NextFunction) => {
     const { firstName, lastName, email, password, role } = req.body;
@@ -22,7 +22,7 @@ const login = catchAsync(
     const { email, password } = req.body;
     const user = await authService.login(email, password);
     const accessToken = jwt.sign({id: user._id}, TOKEN_SECRET , { expiresIn: '1d' });
-    res.status(httpStatus.OK).json({user,accessToken});
+    res.status(httpStatus.OK).json({user, accessToken});
   }
 );
 

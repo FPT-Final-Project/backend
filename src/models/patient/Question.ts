@@ -1,5 +1,5 @@
-import mongoose from "mongoose";
-import { Document, Schema } from "mongoose";
+import mongoose from 'mongoose';
+import { Document, Schema } from 'mongoose';
 export interface IQuestion extends Document {
   _id: string;
   title: string;
@@ -14,10 +14,10 @@ export const QuestionSchema: Schema = new Schema(
   {
     title: { type: String, require: true },
     description: { type: String, require: true },
-    patientId: { type: Schema.Types.ObjectId, ref: "User", required: true },
+    patientId: { type: Schema.Types.ObjectId, ref: 'User', required: true },
     isDeletedAt: { type: Boolean, default: false },
   },
   { timestamps: true }
 );
 
-export default mongoose.model<IQuestion>("Question", QuestionSchema);
+export default mongoose.model<IQuestion>('Question', QuestionSchema);
