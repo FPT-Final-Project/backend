@@ -8,7 +8,7 @@ const updateProfile = catchAsync(
       const {firstName, lastName, phone, address} = req.body;
 
       await userService.updateProfile(req, firstName, lastName, phone, address)
-        res.status(httpStatus.OK)
+        res.status(httpStatus.OK).end()
     }
 );
 export default {updateProfile}
