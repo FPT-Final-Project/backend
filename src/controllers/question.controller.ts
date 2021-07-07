@@ -11,6 +11,7 @@ const askNewQuestion = catchAsync(
     });
   }
 );
+<<<<<<< HEAD
 const getAllQuestions = catchAsync(async(_req: Request, res: Response, _next: NextFunction) => {
     const allQuestions = await questionService.getAllQuestions();
     return res.status(httpStatus.OK).json({
@@ -20,3 +21,14 @@ const getAllQuestions = catchAsync(async(_req: Request, res: Response, _next: Ne
 export default{
     askNewQuestion, getAllQuestions
 };
+=======
+const getAllQuestions = catchAsync(async(_req: Request, res: Response, _next: NextFunction) => { 
+    const allQuestions = await questionService.getAllQuestions()
+    return res.status(httpStatus.OK).json({
+      allQuestions
+    })  
+})
+export default{ 
+    askNewQuestion, getAllQuestions
+}
+>>>>>>> 1835606 ( implement comment api)
