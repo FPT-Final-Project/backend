@@ -13,19 +13,11 @@ export interface IComment extends Document {
 export const CommentSchema: Schema = new Schema(
   {
     description: { type: String, required: true },
-<<<<<<< HEAD
     doctorId: { type: Schema.Types.ObjectId, ref: 'User', required: true },
     questionId: { type: Schema.Types.ObjectId, ref: 'Question' , required: true  },
     createdAt: { type: Number },
     updatedAt: { type: Number },
     isDeletedAt: { type: Boolean, default: false  },
-=======
-    doctorId: { type: Schema.Types.ObjectId, ref:"User",required: true },
-    questionId: { type: Schema.Types.ObjectId,ref:"Question" ,required: true  },
-    createdAt: { type: Number },
-    updatedAt: { type: Number },
-    isDeletedAt: { type: Boolean,default: false  },
->>>>>>> 1835606 ( implement comment api)
   },
   { timestamps: true }
 );
