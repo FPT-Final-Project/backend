@@ -2,7 +2,6 @@ import { User } from "../models";
 import { getToken, verifyToken } from "../utils/jwt";
 
 const isAuth = async (req, _res, next) => { 
-    console.log(req)
     try {
         const token = getToken(req);
         const decoded = verifyToken(token);
