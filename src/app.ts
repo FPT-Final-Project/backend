@@ -6,11 +6,6 @@ import { PORT } from './configs';
 import db from './configs/mongoose';
 import routers from './routers';
 import { handler, converter, routeNotFound } from './middlewares/error';
-<<<<<<< HEAD
-=======
-const corsOptions = { methods: ['GET', 'POST', 'PUT', 'DELETE'] };
-const app = express();
->>>>>>> 9fda1a9 ( fix yanr lint)
 
 const corsOptions = { methods: ['GET', 'POST', 'PUT', 'DELETE'] };
 const app = express();
@@ -24,11 +19,7 @@ try {
 } catch (e) {
   console.log('could not connect');
 }
-<<<<<<< HEAD
-app.use(routers);
-=======
 app.use('/v1', routers);
->>>>>>> 9fda1a9 ( fix yanr lint)
 app.use(converter);
 app.use(routeNotFound);
 app.use(handler);
