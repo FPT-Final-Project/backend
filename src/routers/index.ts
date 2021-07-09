@@ -2,6 +2,7 @@ import express from 'express';
 import questionRoute from './question';
 import authRoute from './auth';
 import userRoute from './user';
+
 const router = express.Router();
 
 router.use('/auth', authRoute);

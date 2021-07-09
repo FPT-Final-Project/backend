@@ -6,7 +6,7 @@ export const getPermission = wrapMiddleWare(
     const { _id } = req.body;
     console.log('Body : ', req.body);
     next();
-  }
+  },
 );
 
 export const authenticate = async (req: Request, res: Response) => {
