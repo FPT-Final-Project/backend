@@ -13,10 +13,10 @@ export const CommentSchema: Schema = new Schema(
   {
     description: { type: String, required: true },
     doctorId: { type: Schema.Types.ObjectId, ref: 'User', required: true },
-    questionId: { type: Schema.Types.ObjectId, ref: 'Question' , required: true  },
+    questionId: { type: Schema.Types.ObjectId, ref: 'Question', required: true },
     createdAt: { type: Number },
     updatedAt: { type: Number },
-    isDeletedAt: { type: Boolean, default: false  },
+    isDeletedAt: { type: Boolean, default: false },
   },
   { timestamps: true },
 );

@@ -5,7 +5,7 @@
   "license": "MIT",
   "scripts": {
     "start": "nodemon src/app.ts",
-    "lint": "eslint -c .eslintrc.json ./src/**/*.ts "
+    "lint": "eslint -c .eslintrc.json ./src/*/*.ts "
   },
   "dependencies": {
     "bcrypt": "^5.0.1",

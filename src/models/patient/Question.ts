@@ -1,5 +1,5 @@
-import mongoose from 'mongoose';
-import { Document, Schema } from 'mongoose';
+import mongoose, { Document, Schema } from 'mongoose';
+
 export interface IQuestion extends Document {
   _id: string;
   title: string;
