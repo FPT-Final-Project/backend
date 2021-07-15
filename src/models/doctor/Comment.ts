@@ -11,13 +11,12 @@ export interface IComment extends Document {
 }
 export const CommentSchema: Schema = new Schema(
   {
-    _id: { type: String, require: true },
-    description: { type: String, requires: true },
-    doctorId: { type: String, require: true, index: true },
-    questionId: { type: String, require: true, index: true },
+    description: { type: String, required: true },
+    doctorId: { type: Schema.Types.ObjectId, ref: 'User', required: true },
+    questionId: { type: Schema.Types.ObjectId, ref: 'Question', required: true },
     createdAt: { type: Number },
     updatedAt: { type: Number },
-    isDeletedAt: { type: Boolean },
+    isDeletedAt: { type: Boolean, default: false },
   },
   { timestamps: true },
 );

@@ -9,13 +9,13 @@ const login = {
   }),
 };
 const signup = {
-    body: Joi.object({
-        email: Joi.string().required().email(),
-        password: Joi.string().min(8).max(30).required(),
-        firstName: Joi.string().min(2).max(30).required(),
-        lastName: Joi.string().min(2).max(30).required(),
-        role: Joi.string().required()
-      }),
+  body: Joi.object({
+    email: Joi.string().required().email(),
+    password: Joi.string().min(8).max(30).required(),
+    firstName: Joi.string().min(2).max(30).required(),
+    lastName: Joi.string().min(2).max(30).required(),
+    role: Joi.string().required(),
+  }),
 };
 
-export default { login , signup };
+export default { login, signup };

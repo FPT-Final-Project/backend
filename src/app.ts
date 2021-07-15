@@ -19,7 +19,7 @@ try {
 } catch (e) {
   console.log('could not connect');
 }
-app.use(routers);
+app.use('/v1', routers);
 app.use(converter);
 app.use(routeNotFound);
 app.use(handler);
