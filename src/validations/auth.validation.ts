@@ -8,6 +8,7 @@ const login = {
       .required(),
   }),
 };
+
 const signup = {
   body: Joi.object({
     email: Joi.string().required().email(),

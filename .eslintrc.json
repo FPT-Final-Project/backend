@@ -40,7 +40,9 @@
     "max-len": ["warn", {
       "code": 120
     }],
-    "lines-between-class-members": "off"
+    "lines-between-class-members": "off",
+    "arrow-body-style": "off",
+    "no-underscore-dangle": "off"
   },
   "settings": {
     "import/resolver": {

@@ -14,6 +14,7 @@ const signup = async (firstName, lastName, email, password, role) => {
       status: httpStatus.BAD_REQUEST,
     });
   }
+
   const passwordHashed = await bcrypt.hash(password, saltRounds);
   await User.create({
     firstName,
@@ -22,8 +23,10 @@ const signup = async (firstName, lastName, email, password, role) => {
     role,
     password: passwordHashed,
   });
+
   return { email, firstName, lastName };
 };
+
 const login = async (email, password) => {
   const user = await User.findOne({ email });
   if (!user) {
@@ -32,6 +35,7 @@ const login = async (email, password) => {
       status: httpStatus.NOT_FOUND,
     });
   }
+
   const match = await bcrypt.compare(password, user.password);
   if (!match) {
     throw new APIError({
@@ -39,6 +43,7 @@ const login = async (email, password) => {
       status: httpStatus.BAD_REQUEST,
     });
   }
+
   return _.pick(user, ['gender', 'isOnline', 'role', '_id', 'firstName', 'lastName', 'avatar']);
 };
 

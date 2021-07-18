@@ -7,10 +7,12 @@ const askNewQuestion = async (information, req) => {
   });
   return question;
 };
+
 const getAllQuestions = async () => {
   const allQuestion = await Question.find({});
   return allQuestion;
 };
+
 export default {
   askNewQuestion,
   getAllQuestions,

@@ -10,6 +10,7 @@ const signup = catchAsync(
     const {
       firstName, lastName, email, password, role,
     } = req.body;
+
     const result = await authService.signup(
       firstName,
       lastName,
@@ -17,6 +18,7 @@ const signup = catchAsync(
       password,
       role,
     );
+
     res.status(httpStatus.CREATED).json(result);
   },
 );
