@@ -8,6 +8,7 @@ export interface IPsychologyAnswer extends Document {
   updatedAt: number;
   isDeleted: boolean;
 }
+
 export const PsychologyAnswerSchema: Schema = new Schema({
   _id: { type: String, require: true },
   psyQuestionId: { type: String, require: true, index: true },

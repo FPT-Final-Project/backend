@@ -11,6 +11,7 @@ const isAuth = async (req, _res, next) => {
     next(err);
   }
 };
+
 export {
   isAuth,
 };

@@ -10,13 +10,16 @@ const addNewAnswerToQuestion = async (information, req, questionId) => {
       status: httpStatus.NOT_FOUND,
     });
   }
+
   const comment = await Comment.create({
     ...information,
     doctorId: req.user._id,
     questionId,
   });
+
   return comment;
 };
+
 export default {
   addNewAnswerToQuestion,
 };

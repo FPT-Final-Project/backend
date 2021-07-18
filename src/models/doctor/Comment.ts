@@ -9,6 +9,7 @@ export interface IComment extends Document {
   updatedAt: number;
   isDeletedAt: boolean;
 }
+
 export const CommentSchema: Schema = new Schema(
   {
     description: { type: String, required: true },
@@ -20,4 +21,5 @@ export const CommentSchema: Schema = new Schema(
   },
   { timestamps: true },
 );
+
 export default mongoose.model<IComment>('Comment', CommentSchema);

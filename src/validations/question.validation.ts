@@ -6,6 +6,7 @@ const askNewQuestion = {
     description: Joi.string().required(),
   }),
 };
+
 export default {
   askNewQuestion,
 };

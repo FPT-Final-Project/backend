@@ -1,8 +1,5 @@
 import * as mongoose from 'mongoose';
 import { Document, Schema } from 'mongoose';
-/**
- * Patient Interface
- */
 
 /**
  * Feedback Interface
@@ -26,4 +23,5 @@ export const FeedbackSchema: Schema = new Schema({
   updatedAt: { type: Number },
   isDeleted: { type: Boolean },
 });
+
 export default mongoose.model<IFeedback>('Feedback', FeedbackSchema);

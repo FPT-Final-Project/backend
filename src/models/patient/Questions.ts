@@ -1,14 +1,14 @@
 import mongoose, { Document, Schema } from 'mongoose';
 
 export interface IQuestion extends Document {
-    _id: string;
-    title: string;
-    description: string;
-    patientId: string;
-    createdAt: number;
-    updatedAt: number;
-    isDeletedAt: boolean;
-  }
+  _id: string;
+  title: string;
+  description: string;
+  patientId: string;
+  createdAt: number;
+  updatedAt: number;
+  isDeletedAt: boolean;
+}
 
 export const QuestionSchema: Schema = new Schema({
   _id: { type: String, require: true },

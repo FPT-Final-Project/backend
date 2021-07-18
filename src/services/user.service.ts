@@ -1,9 +1,15 @@
 import httpStatus from 'http-status';
+import { IUser } from '../models/User';
 import APIError from '../utils/ApiError';
 import { User } from '../models';
 
-const updateProfile = async (req, firstName, lastName, phone, address) => {
-  const { user } = req;
+const updateProfile = async (
+  user: IUser,
+  body: { firstName: string, lastName: string, phone: string, address: string },
+) => {
+  const {
+    firstName, lastName, phone, address,
+  } = body;
   const checkUser = await User.findOne({ _id: user.id });
   if (!checkUser) {
     throw new APIError({
@@ -16,6 +22,7 @@ const updateProfile = async (req, firstName, lastName, phone, address) => {
     firstName, lastName, phone, address,
   });
 };
+
 export default {
   updateProfile,
 };
