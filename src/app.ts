@@ -14,6 +14,7 @@ app.use(morgan('combined'));
 app.use(cors(corsOptions));
 app.use(express.urlencoded({ extended: true }));
 app.use(express.json());
+
 try {
   db.connect();
 } catch (e) {

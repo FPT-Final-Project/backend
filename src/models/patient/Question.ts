@@ -15,7 +15,7 @@ export const QuestionSchema: Schema = new Schema(
     title: { type: String, require: true },
     description: { type: String, require: true },
     patientId: { type: Schema.Types.ObjectId, ref: 'User', required: true },
-    isDeletedAt: { type: Boolean, default: false },
+    isDeleted: { type: Boolean, default: false },
   },
   { timestamps: true },
 );
