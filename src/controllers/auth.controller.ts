@@ -5,15 +5,14 @@ import catchAsync from '../utils/catchAsync';
 import { authService } from '../services';
 import { TOKEN_SECRET } from '../configs';
 
-const signup = catchAsync(
+const register = catchAsync(
   async (req: Request, res: Response, _next: NextFunction) => {
     const {
-      firstName, lastName, email, password, role,
+      name, email, password, role,
     } = req.body;
 
-    const result = await authService.signup(
-      firstName,
-      lastName,
+    const result = await authService.register(
+      name,
       email,
       password,
       role,
@@ -28,10 +27,13 @@ const login = catchAsync(
     const { email, password } = req.body;
     const user = await authService.login(email, password);
     const token = jwt.sign({ id: user._id }, TOKEN_SECRET, { expiresIn: '1d' });
-    res.status(httpStatus.OK).json({ user, token });
+    user.token = token;
+
+    res.status(httpStatus.OK).json(user);
   },
 );
 
 export default {
-  signup, login,
+  register,
+  login,
 };
