@@ -8,7 +8,6 @@
     "lint": "eslint -c .eslintrc.json ./src/*/*.ts"
   },
   "dependencies": {
-    "@types/lodash": "^4.14.171",
     "bcrypt": "^5.0.1",
     "body-parser": "^1.19.0",
     "cloudinary": "^1.26.2",
@@ -32,6 +31,7 @@
   "devDependencies": {
     "@types/cors": "^2.8.10",
     "@types/express": "^4.17.12",
+    "@types/lodash": "^4.14.171",
     "@types/mongoose": "^5.11.97",
     "@types/multer": "^1.4.7",
     "@types/node": "^15.6.1",
