@@ -44,10 +44,13 @@ const changePassword = async (users, password, newPassword) => {
   const passwordHashed = await bcrypt.hash(newPassword, saltRounds);
   await User.findOneAndUpdate({ _id: users.id }, { password: passwordHashed });
 };
+const updateAvatar = async (avatar, user) => {
+  return User.findOneAndUpdate({ _id: user.id }, { avatar });
+};
 const getListOfDoctors = async () => {
   const listOfDoctors = await User.find({ role: 'doctor' });
   return _.map(listOfDoctors, _.partialRight(_.pick, ['gender', 'firstName', 'lastName', 'email']));
 };
 export default {
-  updateProfile, changePassword, getListOfDoctors,
+  updateProfile, changePassword, getListOfDoctors, updateAvatar,
 };

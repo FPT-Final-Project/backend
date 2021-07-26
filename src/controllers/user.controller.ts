@@ -18,8 +18,15 @@ const changePassword = catchAsync(async (req: Request, res:Response, _:NextFunct
 const uploadAvatar = catchAsync(async (req: Request, res:Response, _:NextFunction) => {
   const image = (req as any).file;
   const url = await uploadSingle(image);
-
   res.status(httpStatus.OK).send({ url, size: image.size });
 });
 
-export default { updateProfile, changePassword, uploadAvatar };
+const updateAvatar = catchAsync(async (req: Request, res:Response, _:NextFunction) => {
+  const { avatar } = req.body;
+  const { user } = (req as any);
+  const users = await userService.updateAvatar(avatar, user);
+  res.status(httpStatus.OK).json(users);
+});
+export default {
+  updateProfile, changePassword, uploadAvatar, updateAvatar,
+};
