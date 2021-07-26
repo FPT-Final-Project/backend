@@ -6,7 +6,7 @@ import APIError from '../utils/ApiError';
 
 const saltRounds = 10;
 
-const signup = async (firstName, lastName, email, password, role) => {
+const register = async (name: string, email:string, password: string, role: string) => {
   const user = await User.findOne({ email });
   if (user) {
     throw new APIError({
@@ -17,17 +17,17 @@ const signup = async (firstName, lastName, email, password, role) => {
 
   const passwordHashed = await bcrypt.hash(password, saltRounds);
   await User.create({
-    firstName,
-    lastName,
+    name,
     email,
     role,
     password: passwordHashed,
   });
+  const newUser = await User.findOne({ email });
 
-  return { email, firstName, lastName };
+  return _.pick(newUser, ['_id', 'gender', 'role', 'name', 'avatar', 'email']);
 };
 
-const login = async (email, password) => {
+const login = async (email: string, password: string) => {
   const user = await User.findOne({ email });
   if (!user) {
     throw new APIError({
@@ -44,9 +44,9 @@ const login = async (email, password) => {
     });
   }
 
-  return _.pick(user, ['gender', 'isOnline', 'role', '_id', 'firstName', 'lastName', 'avatar']);
+  return _.pick(user, ['_id', 'gender', 'role', 'name', 'avatar', 'email']);
 };
 
 export default {
-  signup, login,
+  register, login,
 };

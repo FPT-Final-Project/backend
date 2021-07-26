@@ -13,7 +13,7 @@ export const checkUserPatient = (req, _res, next) => {
   }
 };
 
-export const checkUserDoctor = (req, res, next) => {
+export const checkUserDoctor = (req, _res, next) => {
   const { user } = req;
   if (user.role === 'doctor') {
     next();
