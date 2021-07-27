@@ -17,7 +17,7 @@ export const QuestionSchema: Schema = new Schema(
     patientId: { type: Schema.Types.ObjectId, ref: 'User', required: true },
     isDeletedAt: { type: Boolean, default: false },
   },
-  { timestamps: true }
+  { timestamps: true },
 );
 
 export default mongoose.model<IQuestion>('Question', QuestionSchema);

@@ -1,19 +1,19 @@
 import httpStatus from 'http-status';
 import APIError from './ApiError';
 
-export function checkUserPatient(req, _res, next) {
+export const checkUserPatient = (req, _res, next) => {
   const { user } = req;
   if (user.role === 'patient') {
     next();
   } else {
     throw new APIError({
-      message: 'Access Denined',
+      message: 'Access Denied',
       status: httpStatus.FORBIDDEN,
     });
   }
-}
+};
 
-export function checkUserDoctor(req, res, next) {
+export const checkUserDoctor = (req, _res, next) => {
   const { user } = req;
   if (user.role === 'doctor') {
     next();
@@ -23,4 +23,4 @@ export function checkUserDoctor(req, res, next) {
       status: httpStatus.FORBIDDEN,
     });
   }
-}
+};

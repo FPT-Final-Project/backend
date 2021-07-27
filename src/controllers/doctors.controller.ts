@@ -1,9 +1,8 @@
 import { NextFunction, Request, Response } from 'express';
-import { wrapMiddleWare } from '../utils/middleware';
+import catchAsync from '../utils/catchAsync';
 
-const getDoctors = wrapMiddleWare(
+const getDoctors = catchAsync(
   async (req: Request, res: Response, _: NextFunction) => {
-
   },
 );
 
