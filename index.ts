@@ -38,3 +38,9 @@ app.use(cors());
 httpServer.listen(port, () => {
 	console.log('Server listening on Port 5000');
 })
+// let date = new Date("07/27/2021 21:30:00");
+// let date1 = new Date("07/27/2021 22:30:00");
+// let milliseconds = date.getTime(); 
+// let milliseconds1 = date1.getTime(); 
+// console.log(milliseconds);
+// console.log(milliseconds1);

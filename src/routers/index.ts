@@ -6,9 +6,12 @@ const router: Router = Router()
 router.get('/', (req, res) => {
     res.send('Hello World!');
   });
-
-router.get('/info_videocall', (req, res) => { 
-  res.send({ username: 'Ngo Bao',partnername: 'Dr.The Duy' }); 
+let date = new Date("07/27/2021 21:30:00");
+let date1 = new Date("07/27/2021 22:56:59");
+let milliseconds = date.getTime(); 
+let milliseconds1 = date1.getTime(); 
+router.get('/info_appointment', (req, res) => { 
+  res.send({ userid: '1',doctorid: '2',timestart: milliseconds,timeend: milliseconds1 }); 
 });
 
 
