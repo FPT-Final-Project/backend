@@ -27,9 +27,8 @@ const login = catchAsync(
     const { email, password } = req.body;
     const user = await authService.login(email, password);
     const token = jwt.sign({ id: user._id }, TOKEN_SECRET, { expiresIn: '1d' });
-    user.token = token;
 
-    res.status(httpStatus.OK).json(user);
+    res.status(httpStatus.OK).json({ ...user, token });
   },
 );
 
