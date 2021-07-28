@@ -6,6 +6,7 @@ import doctorController from './doctors.controller';
 import scheduleController from './schedule.controller';
 import psytestController from './psychology_test/psytest.controller';
 import psyQuestionController from './psychology_test/question.controller';
+import psyresultController from './psychology_test/psyresult.controller';
 
 export {
   authController,
@@ -16,4 +17,5 @@ export {
   scheduleController,
   psytestController,
   psyQuestionController,
+  psyresultController,
 };
