@@ -12,6 +12,11 @@ const addNewAnswerToQuestion = catchAsync(async (req: Request, res: Response, _n
     comment,
   });
 });
+const getAllAnswersOfQuestion = catchAsync(async (req: Request, res: Response, _next: NextFunction) => {
+  const { params: { questionId } } = req;
+  const comments = await commentService.getAllAnswersOfQuestion(questionId);
+  res.status(httpStatus.OK).json({ comments });
+});
 export default {
-  addNewAnswerToQuestion,
+  addNewAnswerToQuestion, getAllAnswersOfQuestion,
 };

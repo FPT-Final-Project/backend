@@ -1,4 +1,5 @@
 import httpStatus from 'http-status';
+import _ from 'lodash';
 import APIError from '../utils/ApiError';
 import { Comment, Question } from '../models';
 
@@ -19,7 +20,10 @@ const addNewAnswerToQuestion = async (information, req, questionId) => {
 
   return comment;
 };
-
+const getAllAnswersOfQuestion = async (questionId) => {
+  const comments = await Comment.find({ questionId });
+  return _.map(comments, _.partialRight(_.pick, ['description', 'doctorId', 'createdAt']));
+};
 export default {
-  addNewAnswerToQuestion,
+  addNewAnswerToQuestion, getAllAnswersOfQuestion,
 };
