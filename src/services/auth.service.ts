@@ -1,12 +1,13 @@
 import httpStatus from 'http-status';
 import bcrypt from 'bcrypt';
 import _ from 'lodash';
+import { ObjectId } from 'mongodb';
 import { User } from '../models';
 import APIError from '../utils/ApiError';
 
 const saltRounds = 10;
 
-const register = async (name: string, email:string, password: string, role: string) => {
+const register = async (id: string, name: string, email:string, password: string, role: string) => {
   const user = await User.findOne({ email });
   if (user) {
     throw new APIError({
@@ -16,12 +17,15 @@ const register = async (name: string, email:string, password: string, role: stri
   }
 
   const passwordHashed = await bcrypt.hash(password, saltRounds);
-  await User.create({
+  const data = {
     name,
     email,
     role,
     password: passwordHashed,
-  });
+    ...(id && { _id: new ObjectId(id) }),
+  };
+
+  await User.create(data);
   const newUser = await User.findOne({ email });
 
   return _.pick(newUser, ['_id', 'gender', 'role', 'name', 'avatar', 'email']);
