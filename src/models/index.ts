@@ -4,6 +4,8 @@ import User from './User';
 import Question from './patient/Question';
 import PsytestQuestion from './psytest/PsytestQuestion';
 import Psytest from './psytest/Psytest';
+import Payment from './Payment';
+import Appointment from './Appointment';
 
 export {
   Comment,
@@ -12,4 +14,6 @@ export {
   Question,
   PsytestQuestion,
   Psytest,
+  Payment,
+  Appointment,
 };

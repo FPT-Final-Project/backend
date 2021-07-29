@@ -1,7 +1,6 @@
 import mongoose, { Document, Schema } from 'mongoose';
 
 export interface IQuestion extends Document {
-  _id: string;
   title: string;
   description: string;
   patientId: string;
@@ -10,14 +9,17 @@ export interface IQuestion extends Document {
   isDeletedAt: boolean;
 }
 
-export const QuestionSchema: Schema = new Schema(
-  {
-    title: { type: String, require: true },
-    description: { type: String, require: true },
-    patientId: { type: Schema.Types.ObjectId, ref: 'User', required: true },
-    isDeleted: { type: Boolean, default: false },
+export const QuestionSchema: Schema = new Schema({
+  title: { type: String, require: true },
+  description: { type: String, require: true },
+  patientId: {
+    type: Schema.Types.ObjectId, ref: 'User', require: true, index: true,
   },
-  { timestamps: true },
-);
+  createdAt: { type: Number },
+  updatedAt: { type: Number },
+  isDeletedAt: { type: Boolean },
+}, {
+  timestamps: true,
+});
 
 export default mongoose.model<IQuestion>('Question', QuestionSchema);
