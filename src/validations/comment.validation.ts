@@ -1,3 +1,4 @@
+/* eslint-disable linebreak-style */
 import { Joi } from 'express-validation';
 
 const addNewAnswerToQuestion = {

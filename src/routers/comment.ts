@@ -1,3 +1,4 @@
+/* eslint-disable linebreak-style */
 import express from 'express';
 import { commentController } from '../controllers';
 import { isAuth } from '../middlewares/isAuth';
