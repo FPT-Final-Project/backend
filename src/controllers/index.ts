@@ -8,8 +8,10 @@ import psytestController from './psychology_test/psytest.controller';
 import psyQuestionController from './psychology_test/question.controller';
 import psyresultController from './psychology_test/psyresult.controller';
 import momoController from './momo.controller';
+import appointmentController from './appointment.controller';
 
 export {
+  appointmentController,
   authController,
   questionController,
   commentController,

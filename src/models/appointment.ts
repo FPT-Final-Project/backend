@@ -7,7 +7,8 @@ export interface IAppointment extends Document {
   name: string;
   startOfAppointment: number;
   endOfAppointment: number;
-  patentId: string;
+  patientId: string;
+  patientName: string;
   doctorId: string;
   doctorName: string;
   status: string;
@@ -26,12 +27,18 @@ export const AppointmentSchema: Schema = new Schema({
   patientName: { type: String, require: true },
   doctorId: { type: String, require: true, index: true },
   doctorName: { type: String, require: true },
-  status: { type: String, require: true, index: true },
-  roomLink: { type: String, require: true, index: true },
-  isCanceled: { type: Boolean, require: true, index: true },
+  status: {
+    type: String, require: true, index: true, enum: ['active', 'inActive'],
+  },
+  roomLink: {
+    type: String, require: true, index: true, unique: true,
+  },
+  isCanceled: {
+    type: Boolean, require: true, index: true, default: false,
+  },
   createdAt: { type: Number },
   updatedAt: { type: Number },
-  isDeleted: { type: Boolean },
+  isDeleted: { type: Boolean, default: false },
 }, {
   versionKey: false,
   timestamps: true,

@@ -5,10 +5,12 @@ import userRoute from './user';
 import doctorRoute from './doctor';
 import scheduleRoute from './schedule';
 import psytestRoute from './psy_test';
+import appointmentRoute from './appointment';
 import { momoController } from '../controllers';
 
 const router = express.Router();
 
+router.use('/appointment', appointmentRoute);
 router.use('/auth', authRoute);
 router.use('/questions', questionRoute);
 router.use('/user', userRoute);
