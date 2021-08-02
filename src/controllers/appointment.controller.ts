@@ -4,8 +4,6 @@ import httpStatus from 'http-status';
 import catchAsync from '../utils/catchAsync';
 import { appointmentService } from '../services';
 
-const mongoose = require('mongoose');
-
 const getAppointments = catchAsync(async (req: Request, res: Response, _:NextFunction) => {
   const appointments = await appointmentService.getAppointments((req as any).user);
   res.status(httpStatus.OK).json(appointments);
