@@ -5,7 +5,8 @@ import { Document, Schema } from 'mongoose';
  */
 export interface IAppointment extends Document {
   name: string;
-  dateOfAppointment: number;
+  startOfAppointment: number;
+  endOfAppointment: number;
   patentId: string;
   doctorId: string;
   doctorName: string;
@@ -19,7 +20,8 @@ export interface IAppointment extends Document {
 
 export const AppointmentSchema: Schema = new Schema({
   name: { type: String, require: true },
-  dateOfAppointment: { type: Number, require: true, index: true },
+  startOfAppointment: { type: Number, require: true, index: true },
+  endOfAppointment: { type: Number, require: true, index: true },
   patientId: { type: String, require: true, index: true },
   patientName: { type: String, require: true },
   doctorId: { type: String, require: true, index: true },
