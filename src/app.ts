@@ -52,16 +52,16 @@ io.on('connection', (socket: Socket) => {
       socket.join(appointmentId);
       socket.to(appointmentId).emit('user-connected', userId, userName, peerId);
 
-      listUser.push(userId);
+      listUser.push({ id: userId, name: userName });
       io.to(appointmentId).emit('getUsersInRoom', listUser);
       socket.on('sendMessage', (message, callback) => {
-        io.to(appointmentId).emit('message', { text: message, userId });
+        io.to(appointmentId).emit('message', { text: message, sendName: userName });
         callback();
       });
 
       socket.on('disconnect', () => {
         socket.to(appointmentId).emit('user-disconnected', userId);
-        listUser.splice(listUser.indexOf(userId), 1);
+        listUser.splice(listUser.indexOf({ id: userId, name: userName }), 1);
         i -= 1;
       });
     });

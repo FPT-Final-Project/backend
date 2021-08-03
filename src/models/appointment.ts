@@ -3,7 +3,6 @@ import mongoose, { Document, Schema } from 'mongoose';
  * Appointment Interface
  */
 export interface IAppointment extends Document {
-  _id: string;
   name: string;
   startOfAppointment: number;
   endOfAppointment: number;

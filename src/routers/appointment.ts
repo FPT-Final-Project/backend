@@ -7,7 +7,7 @@ const router = express.Router();
 
 router.get('/', isAuth, appointmentController.getAppointments);
 router.get('/:id', isAuth, appointmentController.getAppointment);
-router.post('/make-an-appointment', [isAuth, checkUserPatient], appointmentController.makeAnAppointment);
-router.post('/:id/cancel-an-appointment', [isAuth, checkUserPatient], appointmentController.cancelAnAppointment);
+router.post('/create', [isAuth, checkUserPatient], appointmentController.makeAnAppointment);
+router.post('/:id/cancel', [isAuth, checkUserPatient], appointmentController.cancelAnAppointment);
 
 export default router;
