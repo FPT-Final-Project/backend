@@ -7,12 +7,19 @@ const createResult = catchAsync(
   async (req: Request, res: Response, _: NextFunction) => {
     const { id } = req.params;
     const { userId, score } = req.body;
-    await psytestService.createPsyTestResult(userId, id, +score);
+    const result = await psytestService.createPsyTestResult(userId, id, +score);
+    res.status(httpStatus.OK).json(result);
+  },
+);
 
-    res.status(httpStatus.OK).end();
+const recommendDoctor = catchAsync(
+  async (req: Request, res: Response, _: NextFunction) => {
+    const result = req.body;
+    const doctors = await psytestService.recommendDoctor(result);
+    res.status(httpStatus.OK).json(doctors);
   },
 );
 
 export default {
-  createResult,
+  createResult, recommendDoctor,
 };

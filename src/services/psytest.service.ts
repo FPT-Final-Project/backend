@@ -1,5 +1,6 @@
+import { consoleTestResultHandler } from 'tslint/lib/test';
 import PsytestResult from '../models/psytest/PsytestResult';
-import { Psytest, PsytestQuestion } from '../models';
+import { Psytest, PsytestQuestion, User } from '../models';
 
 const createPsyTest = async (name: string, type: string, description: string) => {
   const psytest = await Psytest.create({
@@ -29,8 +30,19 @@ const createPsyTestResult = async (userId: string, quizId: string, score: number
     patientId: userId,
     result: score,
   });
-
   return result;
+};
+const recommendDoctor = async (quizResult) => {
+  const { psyTestId } = quizResult;
+  const psyTestType: any = await Psytest.findById({ _id: psyTestId });
+  const { type } = psyTestType;
+  let doctorArray: any = [];
+  const doctorsRecommended = await User.aggregate([{ $match: { role: 'doctor', major: type.toLowerCase() } }, { $sample: { size: 3 } }]);
+  if (doctorsRecommended.length < 3) {
+    const doctorsRecommendedAfter = await User.aggregate([{ $match: { role: 'doctor', major: null } }, { $sample: { size: 3 - doctorsRecommended.length } }]);
+    doctorArray = [...doctorsRecommended, ...doctorsRecommendedAfter];
+  }
+  return doctorArray;
 };
 
 export default {
@@ -39,4 +51,5 @@ export default {
   createPsyTest,
   createPsyQuestions,
   createPsyTestResult,
+  recommendDoctor,
 };
