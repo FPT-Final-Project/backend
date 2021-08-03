@@ -1,6 +1,6 @@
 /* eslint-disable max-len */
 import _ from 'lodash';
-import { IAppointment } from 'models/Appointment';
+import { IAppointment } from 'models/appointment';
 import { Appointment } from '../models';
 import { isAppointmentOwner } from '../utils/isOwner';
 

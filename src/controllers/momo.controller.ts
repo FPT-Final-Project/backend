@@ -7,6 +7,7 @@ const requestFromMomo = catchAsync(
     const {
       amount, payType, transId, extraData,
     } = req.body;
+
     const [
       appointmentId,
       appointmentName,
