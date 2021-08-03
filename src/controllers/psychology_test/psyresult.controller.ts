@@ -14,7 +14,7 @@ const createResult = catchAsync(
 
 const recommendDoctor = catchAsync(
   async (req: Request, res: Response, _: NextFunction) => {
-    const result = req.body;
+    const { result } = req.body;
     const doctors = await psytestService.recommendDoctor(result);
     res.status(httpStatus.OK).json(doctors);
   },

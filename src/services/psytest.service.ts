@@ -32,7 +32,7 @@ const createPsyTestResult = async (userId: string, quizId: string, score: number
   });
   return result;
 };
-const recommendDoctor = async (quizResult) => {
+const recommendDoctor = async (quizResult: any) => {
   const { psyTestId } = quizResult;
   const psyTestType: any = await Psytest.findById({ _id: psyTestId });
   const { type } = psyTestType;
