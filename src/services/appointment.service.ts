@@ -11,7 +11,9 @@ const getAppointment = async (user: IUser, appointmentId: string): Promise<IAppo
 };
 
 const getAppointments = async (user: IUser) => {
-  const appointments = await Appointment.find({ $or: [{ patientId: user.id }, { doctorId: user.id }], status: 'active' });
+  const d = new Date();
+  const n = d.getTime();
+  const appointments = await Appointment.find({ $or: [{ patientId: user.id }, { doctorId: user.id }], status: 'active', endOfAppointment: { $gte: n } });
   return _.map(appointments, _.partialRight(_.pick, ['_id', 'name', 'startOfAppointment', 'endOfAppointment', 'patientId', 'patientName', 'doctorId', 'doctorName', 'status', 'isCanceled', 'createdAt']));
 };
 
