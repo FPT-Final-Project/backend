@@ -46,21 +46,21 @@ let i = 1;
 const listUser: any[] = [];
 io.on('connection', (socket: Socket) => {
   if (i < 3) {
-    socket.on('join-room', (roomId, userId, peerId) => {
-      console.log(`${userId} is joined room: ${roomId}`);
+    socket.on('join-room', (appointmentId, userId, peerId) => {
+      console.log(`${userId} is joined room: ${appointmentId}`);
       i += 1;
-      socket.join(roomId);
-      socket.to(roomId).emit('user-connected', userId, peerId);
+      socket.join(appointmentId);
+      socket.to(appointmentId).emit('user-connected', userId, peerId);
 
       listUser.push(userId);
-      io.to(roomId).emit('getUsersInRoom', listUser);
+      io.to(appointmentId).emit('getUsersInRoom', listUser);
       socket.on('sendMessage', (message, callback) => {
-        io.to(roomId).emit('message', { text: message, userid: userId });
+        io.to(appointmentId).emit('message', { text: message, userid: userId });
         callback();
       });
 
       socket.on('disconnect', (userid) => {
-        socket.to(roomId).emit('user-disconnected', userId);
+        socket.to(appointmentId).emit('user-disconnected', userId);
         listUser.splice(listUser.indexOf(userid), 1);
         i -= 1;
       });
