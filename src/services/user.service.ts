@@ -57,7 +57,7 @@ const getDoctor = async (id: string) => {
 
 const getListOfDoctors = async () => {
   const listOfDoctors = await User.find({ role: 'doctor' });
-  return _.map(listOfDoctors, _.partialRight(_.pick, ['gender', 'name', 'email', 'avatar']));
+  return _.map(listOfDoctors, _.partialRight(_.pick, ['_id', 'gender', 'name', 'email', 'avatar', 'specialist']));
 };
 
 export default {
