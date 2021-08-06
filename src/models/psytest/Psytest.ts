@@ -3,7 +3,7 @@ import mongoose, { Document, Schema } from 'mongoose';
 export interface IPsychologyTest extends Document {
     _id: string;
     name: string;
-    type: string;
+    type: string ;
     description: string;
     createdAt: number;
     updatedAt: number;
