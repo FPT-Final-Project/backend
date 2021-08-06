@@ -5,5 +5,6 @@ import doctorController from '../controllers/doctors.controller';
 const router = express.Router();
 
 router.get('/', isAuth, doctorController.getListOfDoctors);
+router.get('/:id', isAuth, doctorController.getDoctor);
 
 export default router;

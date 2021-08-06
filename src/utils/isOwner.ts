@@ -1,5 +1,5 @@
 import httpStatus from 'http-status';
-import { Schedule } from '../models';
+import { Schedule, Appointment } from '../models';
 import APIError from './ApiError';
 
 const isScheduleOwner = async (doctorId, scheduleId) => {
@@ -17,5 +17,20 @@ const isScheduleOwner = async (doctorId, scheduleId) => {
     });
   }
 };
+const isAppointmentOwner = async (user, appointmentId) => {
+  const appointment = await Appointment.findOne({ _id: appointmentId });
+  if (!appointment) {
+    throw new APIError({
+      message: 'Appointment not found',
+      status: httpStatus.NOT_FOUND,
+    });
+  }
+  if (appointment.patientId.toString() !== user._id.toString()) {
+    throw new APIError({
+      message: 'User are not the owner of the Appointment',
+      status: httpStatus.BAD_REQUEST,
+    });
+  }
+};
 
-export { isScheduleOwner };
+export { isScheduleOwner, isAppointmentOwner };
