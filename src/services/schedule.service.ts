@@ -10,6 +10,18 @@ const deleteSchedule = async (id, user) => {
   await Schedule.deleteOne({ _id: id });
   return { id };
 };
+const getSchedulesToday = async (id) => {
+  const today = new Date().getTime();
+  const schedules = await Schedule.find({
+    fromTime: {
+      $gte: today,
+      $lte: today + 86400000,
+    },
+    doctorId: id,
+    status: 'active',
+  });
+  return schedules;
+};
 export default {
-  createSchedule, deleteSchedule,
+  createSchedule, deleteSchedule, getSchedulesToday,
 };
