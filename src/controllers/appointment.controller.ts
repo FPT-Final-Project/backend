@@ -25,8 +25,8 @@ const makeAnAppointment = catchAsync(async (req: Request, res: Response, _:NextF
 
 const cancelAnAppointment = catchAsync(async (req: Request, res: Response, _:NextFunction) => {
   const { params: { id } } = req;
-  const appointment = await appointmentService.cancelAnAppointment((req as any).user, id);
-  res.status(httpStatus.OK).json(appointment);
+  const appointments = await appointmentService.cancelAnAppointment((req as any).user, id);
+  res.status(httpStatus.OK).json(appointments);
 });
 
 export default {

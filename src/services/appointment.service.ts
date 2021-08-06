@@ -11,8 +11,7 @@ const getAppointment = async (user: IUser, appointmentId: string): Promise<IAppo
 };
 
 const getAppointments = async (user: IUser) => {
-  const d = new Date();
-  const n = d.getTime();
+  const n = new Date().getTime();
   const appointments = await Appointment.find({ $or: [{ patientId: user.id }, { doctorId: user.id }], status: 'active', endOfAppointment: { $gte: n } });
   return _.map(appointments, _.partialRight(_.pick, ['_id', 'name', 'startOfAppointment', 'endOfAppointment', 'patientId', 'patientName', 'doctorId', 'doctorName', 'status', 'isCanceled', 'createdAt']));
 };
@@ -35,7 +34,10 @@ const makeAnAppointment = async (user, name, startOfAppointment, endOfAppointmen
 
 const cancelAnAppointment = async (user: IUser, appointmentId) => {
   await isAppointmentOwner(user, appointmentId);
-  return Appointment.findOneAndUpdate({ _id: appointmentId }, { status: 'inActive', isCanceled: true });
+  Appointment.findOneAndUpdate({ _id: appointmentId }, { status: 'inActive', isCanceled: true });
+  const n = new Date().getTime();
+  const appointments = await Appointment.find({ $or: [{ patientId: user.id }, { doctorId: user.id }], status: 'active', endOfAppointment: { $gte: n } });
+  return _.map(appointments, _.partialRight(_.pick, ['_id', 'name', 'startOfAppointment', 'endOfAppointment', 'patientId', 'patientName', 'doctorId', 'doctorName', 'status', 'isCanceled', 'createdAt']));
 };
 
 export default {
