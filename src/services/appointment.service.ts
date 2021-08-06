@@ -34,7 +34,7 @@ const makeAnAppointment = async (user, name, startOfAppointment, endOfAppointmen
 
 const cancelAnAppointment = async (user: IUser, appointmentId) => {
   await isAppointmentOwner(user, appointmentId);
-  Appointment.findOneAndUpdate({ _id: appointmentId }, { status: 'inActive', isCanceled: true });
+  await Appointment.findOneAndUpdate({ _id: appointmentId }, { status: 'inActive', isCanceled: true });
   const n = new Date().getTime();
   const appointments = await Appointment.find({ $or: [{ patientId: user.id }, { doctorId: user.id }], status: 'active', endOfAppointment: { $gte: n } });
   return _.map(appointments, _.partialRight(_.pick, ['_id', 'name', 'startOfAppointment', 'endOfAppointment', 'patientId', 'patientName', 'doctorId', 'doctorName', 'status', 'isCanceled', 'createdAt']));
