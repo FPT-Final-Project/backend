@@ -4,7 +4,9 @@
   "main": "index.js",
   "license": "MIT",
   "scripts": {
-    "start": "nodemon src/app.ts",
+    "start": "yarn build && node build/app.js",
+    "server": "nodemon src/app.ts",
+    "build": "rimraf ./build && tsc",
     "lint": "eslint -c .eslintrc.json ./src/*/*.ts"
   },
   "dependencies": {
