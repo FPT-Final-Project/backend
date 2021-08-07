@@ -48,7 +48,7 @@ const listUser: any[] = [];
 io.on('connection', (socket: Socket) => {
   if (i < 3) {
     socket.on('join-room', (appointmentId, userId, userName, peerId) => {
-      console.log(`${userId} is joined room: ${appointmentId}`);
+      // console.log(`${userId} is joined room: ${appointmentId}`);
       i += 1;
       socket.join(appointmentId);
       socket.to(appointmentId).emit('user-connected', userId, userName, peerId);
