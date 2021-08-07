@@ -22,6 +22,10 @@ const getSchedulesToday = async (id) => {
   });
   return schedules;
 };
+const updateSchedule = async (id) => {
+  const schedule = await Schedule.findOneAndUpdate({ _id: id }, { status: 'inActive' });
+  return schedule;
+};
 export default {
-  createSchedule, deleteSchedule, getSchedulesToday,
+  createSchedule, deleteSchedule, getSchedulesToday, updateSchedule,
 };
