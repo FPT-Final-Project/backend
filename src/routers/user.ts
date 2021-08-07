@@ -14,4 +14,5 @@ router.post('/uploadSingle', isAuth, upload.single('image'), userController.uplo
 
 // upload avatar for user
 router.post('/updateAvatar', isAuth, userController.updateAvatar);
+router.get('/:id', isAuth, userController.userProfile);
 export default router;

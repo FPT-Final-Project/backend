@@ -51,6 +51,10 @@ const getListOfDoctors = async () => {
   const listOfDoctors = await User.find({ role: 'doctor' });
   return _.map(listOfDoctors, _.partialRight(_.pick, ['gender', 'firstName', 'lastName', 'email']));
 };
+const getUserProfile = async (id) => {
+  const userProfile = await User.findById(({ _id: id }));
+  return _.pick(userProfile, ['name', 'avatar']);
+};
 export default {
-  updateProfile, changePassword, getListOfDoctors, updateAvatar,
+  updateProfile, changePassword, getListOfDoctors, updateAvatar, getUserProfile,
 };

@@ -12,8 +12,12 @@ const getAllQuestions = async () => {
   const allQuestion = await Question.find({});
   return allQuestion;
 };
-
+const getOwnerQuestion = async (user: any) => {
+  const ownerQuestions = await Question.find({ patientId: user.id });
+  return ownerQuestions;
+};
 export default {
   askNewQuestion,
   getAllQuestions,
+  getOwnerQuestion,
 };
