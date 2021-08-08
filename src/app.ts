@@ -5,7 +5,7 @@ import helmet from 'helmet';
 import morgan from 'morgan';
 import { createServer } from 'http';
 import { Server, Socket } from 'socket.io';
-import logger from 'utils/logger';
+import logger from './utils/logger';
 import { PORT } from './configs';
 import db from './configs/mongoose';
 import routers from './routers';
