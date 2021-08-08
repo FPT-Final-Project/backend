@@ -28,4 +28,14 @@ const getSchedulesToday = catchAsync(
   },
 );
 
-export default { createSchedule, deleteSchedule, getSchedulesToday };
+const updateSchedule = catchAsync(
+  async (req: IRequest, res: Response, _: NextFunction) => {
+    const { id } = req.params;
+    const schedule = await scheduleService.updateSchedule(id);
+    res.status(httpStatus.OK).json(schedule);
+  },
+);
+
+export default {
+  createSchedule, deleteSchedule, getSchedulesToday, updateSchedule,
+};
