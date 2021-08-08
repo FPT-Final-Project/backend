@@ -15,7 +15,7 @@ import { handler, converter, routeNotFound } from './middlewares/error';
 const app = express();
 
 app.use(helmet());
-app.use(morgan('combined'));
+// app.use(morgan('combined'));
 app.use(cors());
 app.use(express.urlencoded({ extended: true }));
 app.use(express.json());
@@ -43,32 +43,34 @@ app.use(handler);
  * Create Socket Listener
  */
 const httpServer = createServer(app);
-const io = new Server(httpServer, {});
-let i = 1;
+const io = new Server(httpServer, {
+  cors: {
+    origin: ['http://localhost:3000', 'https://psycare.web.app'],
+    methods: ['GET', 'POST'],
+  },
+});
+
 const listUser: any[] = [];
 io.on('connection', (socket: Socket) => {
-  if (i < 3) {
-    socket.on('join-room', (appointmentId, userId, userName, peerId) => {
-      logger.info(`${userId} is joined room: ${appointmentId}`);
-      i += 1;
-      socket.join(appointmentId);
-      socket.to(appointmentId).emit('user-connected', userId, userName, peerId);
+  logger.info('Some one has joined joined.');
+  socket.on('join-room', (appointmentId, userId, userName, peerId) => {
+    logger.info(`${userId} is joining room: ${appointmentId}`);
+    socket.join(appointmentId);
+    socket.to(appointmentId).emit('user-connected', userId, userName, peerId);
 
-      listUser.push({ id: userId, name: userName });
-      io.to(appointmentId).emit('getUsersInRoom', listUser);
-      socket.on('sendMessage', (message, callback) => {
-        io.to(appointmentId).emit('message', { text: message, sendName: userName });
-        callback();
-      });
-
-      socket.on('disconnect', () => {
-        logger.info(`${userId} is disconnected`);
-        socket.to(appointmentId).emit('user-disconnected', userId);
-        listUser.splice(listUser.indexOf({ id: userId, name: userName }), 1);
-        i -= 1;
-      });
+    listUser.push({ id: userId, name: userName });
+    io.to(appointmentId).emit('getUsersInRoom', listUser);
+    socket.on('sendMessage', (message, callback) => {
+      io.to(appointmentId).emit('message', { text: message, sendName: userName });
+      callback();
     });
-  }
+
+    socket.on('disconnect', () => {
+      logger.info(`${userId} is disconnected`);
+      socket.to(appointmentId).emit('user-disconnected', userId);
+      listUser.splice(listUser.indexOf({ id: userId, name: userName }), 1);
+    });
+  });
 });
 
 httpServer.listen(PORT, () => {
