@@ -72,5 +72,5 @@ io.on('connection', (socket: Socket) => {
 });
 
 httpServer.listen(PORT, () => {
-  logger.success(`Server is listening on Port: ${PORT}`);
+  logger.info(`Server is listening on Port: ${PORT}`);
 });
