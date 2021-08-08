@@ -11,12 +11,12 @@ import db from './configs/mongoose';
 import routers from './routers';
 import { handler, converter, routeNotFound } from './middlewares/error';
 
-const corsOptions = { methods: ['GET', 'POST', 'PUT', 'DELETE'] };
+// const corsOptions = { methods: ['GET', 'POST', 'PUT', 'DELETE'] };
 const app = express();
 
 app.use(helmet());
 app.use(morgan('combined'));
-app.use(cors(corsOptions));
+app.use(cors());
 app.use(express.urlencoded({ extended: true }));
 app.use(express.json());
 
