@@ -26,6 +26,7 @@ const updateProfile = async (
     firstName, lastName, phone, address,
   });
 };
+
 const changePassword = async (users, password, newPassword) => {
   const user = await User.findOne({ _id: users.id });
   if (!user) {
@@ -44,17 +45,24 @@ const changePassword = async (users, password, newPassword) => {
   const passwordHashed = await bcrypt.hash(newPassword, saltRounds);
   await User.findOneAndUpdate({ _id: users.id }, { password: passwordHashed });
 };
+
 const updateAvatar = async (avatar, user) => {
   return User.findOneAndUpdate({ _id: user.id }, { avatar });
 };
+
+const getDoctor = async (id: string) => {
+  const doctor = await User.findById(id);
+  return _.pick(doctor, ['_id', 'gender', 'role', 'name', 'avatar', 'email']);
+};
+
 const getListOfDoctors = async () => {
   const listOfDoctors = await User.find({ role: 'doctor' });
-  return _.map(listOfDoctors, _.partialRight(_.pick, ['gender', 'firstName', 'lastName', 'email']));
+  return _.map(listOfDoctors, _.partialRight(_.pick, ['_id', 'gender', 'name', 'email', 'avatar', 'specialist']));
 };
 const getUserProfile = async (id) => {
   const userProfile = await User.findById(({ _id: id }));
   return _.pick(userProfile, ['name', 'avatar']);
 };
 export default {
-  updateProfile, changePassword, getListOfDoctors, updateAvatar, getUserProfile,
+  updateProfile, changePassword, getListOfDoctors, updateAvatar, getUserProfile, getDoctor,
 };
