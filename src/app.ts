@@ -25,20 +25,6 @@ try {
 } catch (e) {
   console.log('could not connect');
 }
-
-/**
- * Main routes
- */
-app.get('/version', (req: Request, res: Response) => res.json({ version: 1 }));
-app.use('/v1', routers);
-
-/**
- * Handle Error
- */
-app.use(converter);
-app.use(routeNotFound);
-app.use(handler);
-
 /**
  * Create Socket Listener
  */
@@ -72,6 +58,19 @@ io.on('connection', (socket: Socket) => {
     });
   });
 });
+
+/**
+ * Main routes
+ */
+app.get('/version', (req: Request, res: Response) => res.json({ version: 1 }));
+app.use('/v1', routers);
+
+/**
+ * Handle Error
+ */
+app.use(converter);
+app.use(routeNotFound);
+app.use(handler);
 
 httpServer.listen(PORT, () => {
   logger.info(`Server is listening on Port: ${PORT}`);
