@@ -5,6 +5,7 @@ export interface ISchedule extends Document {
   doctorId: string;
   fromTime: number;
   toTime: number;
+  status: string;
   createdAt: number;
   updatedAt: number;
   isDeleted: boolean;
@@ -12,13 +13,15 @@ export interface ISchedule extends Document {
 
 export const ScheduleSchema: Schema = new Schema(
   {
-    _id: { type: String, require: true },
-    doctorId: { type: String, require: true, index: true },
-    fromTime: { type: Number, index: true },
-    toTime: { type: Number, index: true },
+    doctorId: { type: String, required: true, index: true },
+    fromTime: { type: Number, index: true, required: true },
+    toTime: { type: Number, index: true, required: true },
+    status: {
+      type: String, require: true, index: true, enum: ['active', 'inActive'],
+    },
     createdAt: { type: Number },
     updatedAt: { type: Number },
-    isDeleted: { type: Boolean },
+    isDeleted: { type: Boolean, default: false },
   },
   { timestamps: true },
 );

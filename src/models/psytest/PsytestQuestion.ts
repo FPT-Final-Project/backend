@@ -10,13 +10,24 @@ export interface IPsychologyQuestion extends Document {
 }
 
 export const PsychologyQuestionSchema: Schema = new Schema({
-  _id: { type: String, require: true },
-  psyTestId: { type: String, require: true, index: true },
-  questionText: { type: String, require: true },
+  psyTestId: { type: String, required: true, index: true },
+  questionText: { type: String, required: true },
+  alternatives: [
+    {
+      text: {
+        type: String,
+        required: true,
+      },
+      mark: {
+        type: Number,
+        required: true,
+      },
+    },
+  ],
   createdAt: { type: Number },
   updatedAt: { type: Number },
   isDeleted: { type: Boolean },
-});
+}, { timestamps: true });
 
 export default mongoose.model<IPsychologyQuestion>(
   'PsyQuestion',

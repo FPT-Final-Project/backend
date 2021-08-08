@@ -35,11 +35,7 @@ const UserSchema: Schema = new Schema(
       trim: true,
       minlength: 6,
     },
-    firstName: {
-      type: String,
-      required: true,
-    },
-    lastName: {
+    name: {
       type: String,
       required: true,
     },
@@ -74,6 +70,7 @@ const UserSchema: Schema = new Schema(
     },
     isDeleted: {
       type: Boolean,
+      default: false,
     },
   },
   { timestamps: true },

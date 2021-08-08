@@ -1,10 +1,10 @@
 import express from 'express';
-import doctors from '../controllers/doctors.controller';
+import { isAuth } from '../middlewares/isAuth';
+import doctorController from '../controllers/doctors.controller';
 
 const router = express.Router();
 
-router.get('/:type', doctors.getDoctors);
+router.get('/', isAuth, doctorController.getListOfDoctors);
+router.get('/:id', isAuth, doctorController.getDoctor);
 
-export default {
-  router,
-};
+export default router;
