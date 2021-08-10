@@ -48,7 +48,7 @@ const login = async (email: string, password: string) => {
     });
   }
 
-  return _.pick(user, ['_id', 'gender', 'role', 'name', 'avatar', 'email']);
+  return _.pick(user, ['_id', 'gender', 'role', 'name', 'avatar', 'email', 'major', 'address', 'phone']);
 };
 
 export default {

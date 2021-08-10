@@ -7,13 +7,10 @@ import { User } from '../models';
 
 const saltRounds = 10;
 
-const updateProfile = async (
-  user: IUser,
-  body: { firstName: string, lastName: string, phone: string, address: string },
-) => {
+const updateProfile = async (user: IUser, body) => {
   const {
-    firstName, lastName, phone, address,
-  } = body;
+    name, phone, address, major, gender, job,
+  } = body.values;
   const checkUser = await User.findOne({ _id: user.id });
   if (!checkUser) {
     throw new APIError({
@@ -23,7 +20,7 @@ const updateProfile = async (
   }
 
   await User.findOneAndUpdate({ _id: user.id }, {
-    firstName, lastName, phone, address,
+    name, phone, address, major, gender, job,
   });
 };
 
@@ -59,11 +56,14 @@ const getListOfDoctors = async () => {
   const listOfDoctors = await User.find({ role: 'doctor' });
   return _.map(listOfDoctors, _.partialRight(_.pick, ['_id', 'gender', 'name', 'email', 'avatar', 'specialist']));
 };
-
+const getUserProfile = async (id) => {
+  const userProfile = await User.findById(({ _id: id }));
+  return _.pick(userProfile, ['name', 'avatar']);
+};
+const getMe = async (user) => {
+  const userMe = await User.findById({ _id: user.id });
+  return _.pick(userMe, ['gender', 'name', 'avatar', 'email', 'major', 'phone', 'address', 'job']);
+};
 export default {
-  updateProfile,
-  changePassword,
-  getDoctor,
-  getListOfDoctors,
-  updateAvatar,
+  updateProfile, changePassword, getListOfDoctors, updateAvatar, getUserProfile, getDoctor, getMe,
 };
