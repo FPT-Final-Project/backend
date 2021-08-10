@@ -41,7 +41,14 @@ const updateAvatar = catchAsync(
     res.status(httpStatus.OK).json(users);
   },
 );
+const getMe = catchAsync(
+  async (req: IRequest, res:Response, _:NextFunction) => {
+    const { user } = req;
+    const userMe = await userService.getMe(user);
+    res.status(httpStatus.OK).send(userMe);
+  },
+);
 
 export default {
-  updateProfile, changePassword, uploadAvatar, updateAvatar, userProfile,
+  updateProfile, changePassword, uploadAvatar, updateAvatar, userProfile, getMe,
 };

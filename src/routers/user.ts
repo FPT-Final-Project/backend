@@ -6,9 +6,9 @@ import { userController } from '../controllers';
 import upload from '../configs/multer';
 
 const router = express.Router();
-router.put('/update-profile', isAuth, validate(userValidation.updateProfile), userController.updateProfile);
+router.put('/update-profile', isAuth, userController.updateProfile);
 router.put('/change-password', isAuth, validate(userValidation.changePassword), userController.changePassword);
-
+router.get('/getMe', isAuth, userController.getMe);
 // upload avatar to cloudinary
 router.post('/uploadSingle', isAuth, upload.single('image'), userController.uploadAvatar);
 

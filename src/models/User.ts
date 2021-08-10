@@ -68,6 +68,9 @@ const UserSchema: Schema = new Schema(
       enum: ['patient', 'doctor', 'admin'],
       default: 'patient',
     },
+    major: {
+      type: String,
+    },
     isDeleted: {
       type: Boolean,
       default: false,
