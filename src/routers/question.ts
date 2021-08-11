@@ -15,6 +15,7 @@ router.post('/ask',
 
 router.get('/', isAuth, questionController.getAllQuestions);
 
+router.get('/ownerQuestion', [isAuth, checkUserPatient], questionController.getOwnerQuestion);
 // Routing to comment
 router.use('/:questionId/comments', comment);
 export default router;

@@ -1,9 +1,11 @@
+// @ts-ignore
 import express, { Request, Response } from 'express';
 import cors from 'cors';
 import helmet from 'helmet';
 import morgan from 'morgan';
 import { createServer } from 'http';
 import { Server, Socket } from 'socket.io';
+import logger from './utils/logger';
 import { PORT } from './configs';
 import db from './configs/mongoose';
 import routers from './routers';
@@ -47,7 +49,7 @@ const listUser: any[] = [];
 io.on('connection', (socket: Socket) => {
   if (i < 3) {
     socket.on('join-room', (appointmentId, userId, userName, peerId) => {
-      console.log(`${userId} is joined room: ${appointmentId}`);
+      logger.info(`${userId} is joined room: ${appointmentId}`);
       i += 1;
       socket.join(appointmentId);
       socket.to(appointmentId).emit('user-connected', userId, userName, peerId);
@@ -60,6 +62,7 @@ io.on('connection', (socket: Socket) => {
       });
 
       socket.on('disconnect', () => {
+        logger.info(`${userId} is disconnected`);
         socket.to(appointmentId).emit('user-disconnected', userId);
         listUser.splice(listUser.indexOf({ id: userId, name: userName }), 1);
         i -= 1;
@@ -69,5 +72,5 @@ io.on('connection', (socket: Socket) => {
 });
 
 httpServer.listen(PORT, () => {
-  console.log('Server is listening on Port ', PORT);
+  logger.info(`Server is listening on Port: ${PORT}`);
 });

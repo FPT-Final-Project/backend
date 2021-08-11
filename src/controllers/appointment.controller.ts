@@ -2,7 +2,7 @@
 import { NextFunction, Request, Response } from 'express';
 import httpStatus from 'http-status';
 import catchAsync from '../utils/catchAsync';
-import { appointmentService } from '../services';
+import { appointmentService, scheduleService } from '../services';
 
 const getAppointment = catchAsync(async (req: Request, res: Response, _: NextFunction) => {
   const { id } = req.params;

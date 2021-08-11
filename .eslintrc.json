@@ -44,7 +44,7 @@
     "lines-between-class-members": "off",
     "arrow-body-style": "off",
     "no-underscore-dangle": "off",
-    "linebreak-style": "off"
+    "import/no-unresolved": "off"
   },
   "settings": {
     "import/resolver": {
