@@ -49,12 +49,12 @@ const updateAvatar = async (avatar, user) => {
 
 const getDoctor = async (id: string) => {
   const doctor = await User.findById(id);
-  return _.pick(doctor, ['_id', 'gender', 'role', 'name', 'avatar', 'email']);
+  return _.pick(doctor, ['_id', 'gender', 'role', 'name', 'avatar', 'email', 'major']);
 };
 
 const getListOfDoctors = async () => {
   const listOfDoctors = await User.find({ role: 'doctor' });
-  return _.map(listOfDoctors, _.partialRight(_.pick, ['_id', 'gender', 'name', 'email', 'avatar', 'specialist']));
+  return _.map(listOfDoctors, _.partialRight(_.pick, ['_id', 'gender', 'name', 'email', 'avatar', 'major']));
 };
 const getUserProfile = async (id) => {
   const userProfile = await User.findById(({ _id: id }));
