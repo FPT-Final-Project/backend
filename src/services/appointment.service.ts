@@ -1,6 +1,6 @@
 import _ from 'lodash';
-import { IAppointment } from 'models/Appointment';
-import { IUser } from 'models/User';
+import { IAppointment } from '../models/Appointment';
+import { IUser } from '../models/User';
 import { Appointment } from '../models';
 import { isAppointmentOwner } from '../utils/isOwner';
 
