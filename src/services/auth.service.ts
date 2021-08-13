@@ -4,6 +4,7 @@ import _ from 'lodash';
 import { ObjectId } from 'mongodb';
 import { User } from '../models';
 import APIError from '../utils/ApiError';
+import { verifyToken } from '../utils/jwt';
 
 const saltRounds = 10;
 
@@ -28,7 +29,7 @@ const register = async (id: string, name: string, email:string, password: string
   await User.create(data);
   const newUser = await User.findOne({ email });
 
-  return _.pick(newUser, ['_id', 'gender', 'role', 'name', 'avatar', 'email']);
+  return newUser;
 };
 
 const login = async (email: string, password: string) => {
@@ -48,9 +49,17 @@ const login = async (email: string, password: string) => {
     });
   }
 
-  return _.pick(user, ['_id', 'gender', 'role', 'name', 'avatar', 'email', 'major', 'address', 'phone']);
+  return user;
+};
+
+const loginWithToken = async (token: string) => {
+  const { id } = verifyToken(token);
+  const user = await User.findById(id);
+  return user;
 };
 
 export default {
-  register, login,
+  register,
+  login,
+  loginWithToken,
 };
