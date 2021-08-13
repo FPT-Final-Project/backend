@@ -29,7 +29,7 @@ const uploadAvatar = catchAsync(
   async (req: IRequest, res:Response, _:NextFunction) => {
     const image = (req as any).file;
     const url = await uploadSingle(image);
-    res.status(httpStatus.OK).send({ url, size: image && image.size });
+    res.status(httpStatus.OK).send({ avatar: url, size: image && image.size });
   },
 );
 
