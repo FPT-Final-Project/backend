@@ -1,6 +1,5 @@
 import httpStatus from 'http-status';
 import bcrypt from 'bcrypt';
-import _ from 'lodash';
 import { ObjectId } from 'mongodb';
 import { User } from '../models';
 import APIError from '../utils/ApiError';

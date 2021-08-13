@@ -10,7 +10,7 @@ const router = express.Router();
 // update user information
 router.put('/update-profile', isAuth, userController.updateProfile);
 router.put('/change-password', isAuth, validate(userValidation.changePassword), userController.changePassword);
-router.post('/updateBookingTime', isAuth, userController.updateBookingTime)
+router.post('/updateBookingTime', isAuth, userController.updateBookingTime);
 
 router.get('/getMe', isAuth, userController.getMe);
 // upload avatar to cloudinary
@@ -20,4 +20,5 @@ router.post('/uploadSingle', isAuth, upload.single('image'), userController.uplo
 router.post('/updateAvatar', isAuth, userController.updateAvatar);
 
 router.get('/:id', isAuth, userController.userProfile);
+
 export default router;
