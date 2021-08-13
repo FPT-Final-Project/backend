@@ -15,5 +15,5 @@ const changePassword = {
 };
 
 export default {
- changePassword,
+  changePassword,
 };

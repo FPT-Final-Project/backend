@@ -1,8 +1,7 @@
-/* eslint-disable max-len */
 import { NextFunction, Request, Response } from 'express';
 import httpStatus from 'http-status';
 import catchAsync from '../utils/catchAsync';
-import { appointmentService, scheduleService } from '../services';
+import { appointmentService } from '../services';
 
 const getAppointment = catchAsync(async (req: Request, res: Response, _: NextFunction) => {
   const { id } = req.params;
@@ -17,9 +16,17 @@ const getAppointments = catchAsync(async (req: Request, res: Response, _:NextFun
 
 const makeAnAppointment = catchAsync(async (req: Request, res: Response, _:NextFunction) => {
   const {
-    name, startOfAppointment, endOfAppointment, doctorId, doctorName,
+    patientId, patientName, name, startOfAppointment, endOfAppointment, doctorId, doctorName,
   } = req.body;
-  const appointment = await appointmentService.makeAnAppointment((req as any).user, name, startOfAppointment, endOfAppointment, doctorId, doctorName);
+  const appointment = await appointmentService.makeAnAppointment(
+    patientId,
+    patientName,
+    name,
+    startOfAppointment,
+    endOfAppointment,
+    doctorId,
+    doctorName,
+  );
   res.status(httpStatus.CREATED).json(appointment);
 });
 
@@ -29,6 +36,18 @@ const cancelAnAppointment = catchAsync(async (req: Request, res: Response, _:Nex
   res.status(httpStatus.OK).json(appointments);
 });
 
+const checkAppointment = catchAsync(
+  async (req: Request, res: Response, _:NextFunction) => {
+    const { patientId, doctorId, startOfAppointment } = req.body;
+    const isExisted = await appointmentService.checkAppointment(patientId, doctorId, startOfAppointment);
+    res.status(httpStatus.OK).json({ isExisted });
+  },
+);
+
 export default {
-  getAppointment, getAppointments, makeAnAppointment, cancelAnAppointment,
+  getAppointment,
+  getAppointments,
+  makeAnAppointment,
+  cancelAnAppointment,
+  checkAppointment,
 };

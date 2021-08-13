@@ -5,6 +5,16 @@ import catchAsync from '../utils/catchAsync';
 import { authService } from '../services';
 import { TOKEN_SECRET } from '../configs';
 
+const loginWithToken = catchAsync(
+  async (req: Request, res: Response, _next: NextFunction) => {
+    const { token } = req.params;
+
+    const result = await authService.loginWithToken(token);
+
+    res.status(httpStatus.OK).json(result);
+  },
+);
+
 const register = catchAsync(
   async (req: Request, res: Response, _next: NextFunction) => {
     const {
@@ -18,7 +28,7 @@ const register = catchAsync(
       password,
       role,
     );
-    const token = jwt.sign({ id: result._id }, TOKEN_SECRET, { expiresIn: '1y' });
+    const token = jwt.sign({ id: result?._id }, TOKEN_SECRET, { expiresIn: '1y' });
 
     res.status(httpStatus.CREATED).json({ ...result, token });
   },
@@ -37,4 +47,5 @@ const login = catchAsync(
 export default {
   register,
   login,
+  loginWithToken,
 };

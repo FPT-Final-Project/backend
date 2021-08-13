@@ -23,7 +23,7 @@ app.use(express.json());
 try {
   db.connect();
 } catch (e) {
-  console.log('could not connect');
+  logger.error('Could not connect DB');
 }
 
 /**
