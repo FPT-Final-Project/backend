@@ -5,7 +5,8 @@ import Question from './patient/Question';
 import PsytestQuestion from './psytest/PsytestQuestion';
 import Psytest from './psytest/Psytest';
 import Payment from './Payment';
-import Appointment from './Appointment';
+import Appointment from './appointment';
+import FeedBack from './patient/Feedback';
 
 export {
   Comment,
@@ -16,4 +17,5 @@ export {
   Psytest,
   Payment,
   Appointment,
+  FeedBack,
 };

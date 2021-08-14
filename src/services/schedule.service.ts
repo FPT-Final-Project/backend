@@ -1,8 +1,10 @@
 import { Schedule } from '../models';
 import { isScheduleOwner } from '../utils/isOwner';
 
-const createSchedule = async (fromTime, toTime, doctor) => {
-  const schedule = await Schedule.create({ doctorId: doctor.id, fromTime, toTime });
+const createSchedule = async (fromTime, toTime, user) => {
+  const schedule = await Schedule.create({
+    doctorId: user._id, fromTime, toTime, status: 'active',
+  });
   return schedule;
 };
 const deleteSchedule = async (id, user) => {

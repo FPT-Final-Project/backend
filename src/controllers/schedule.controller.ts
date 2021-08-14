@@ -7,7 +7,7 @@ import catchAsync from '../utils/catchAsync';
 const createSchedule = catchAsync(
   async (req: IRequest, res: Response, _: NextFunction) => {
     const { fromTime, toTime } = req.body;
-    const schedule = await scheduleService.createSchedule(fromTime, toTime, req.user);
+    const schedule = await scheduleService.createSchedule(fromTime, toTime, (req as any).user);
     res.status(httpStatus.CREATED).json(schedule);
   },
 );
