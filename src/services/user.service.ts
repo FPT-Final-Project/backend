@@ -49,21 +49,36 @@ const updateAvatar = async (avatar, user) => {
 
 const getDoctor = async (id: string) => {
   const doctor = await User.findById(id);
-  return _.pick(doctor, ['_id', 'gender', 'role', 'name', 'avatar', 'email', 'major']);
+  return _.pick(doctor, ['_id', 'gender', 'name', 'email', 'avatar', 'major', 'consultingFee', 'bookingTime']);
 };
 
 const getListOfDoctors = async () => {
   const listOfDoctors = await User.find({ role: 'doctor' });
-  return _.map(listOfDoctors, _.partialRight(_.pick, ['_id', 'gender', 'name', 'email', 'avatar', 'major']));
+  return _.map(
+    listOfDoctors,
+    _.partialRight(_.pick, ['_id', 'gender', 'name', 'email', 'avatar', 'major', 'consultingFee', 'bookingTime']),
+  );
 };
+
 const getUserProfile = async (id) => {
   const userProfile = await User.findById(({ _id: id }));
   return _.pick(userProfile, ['name', 'avatar']);
 };
+
 const getMe = async (user) => {
   const userMe = await User.findById({ _id: user.id });
   return _.pick(userMe, ['gender', 'name', 'avatar', 'email', 'major', 'phone', 'address', 'job']);
 };
+
+const updateBookingTime = (id: string, bookingTime: string[]) => User.findByIdAndUpdate(id, { bookingTime });
+
 export default {
-  updateProfile, changePassword, getListOfDoctors, updateAvatar, getUserProfile, getDoctor, getMe,
+  updateProfile,
+  changePassword,
+  getListOfDoctors,
+  updateAvatar,
+  getUserProfile,
+  getDoctor,
+  getMe,
+  updateBookingTime,
 };
