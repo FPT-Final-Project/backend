@@ -18,6 +18,6 @@ jobs:
       - name: Install packages
         run: yarn install
       - name: Build tsc
-        run: yarn start
+        run: yarn build
       - name: Check ESlint
         run: yarn lint

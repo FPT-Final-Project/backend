@@ -8,7 +8,7 @@ import { verifyToken } from '../utils/jwt';
 const saltRounds = 10;
 
 const register = async (id: string, name: string, email:string, password: string, role: string) => {
-  const user = await User.findOne({ email });
+  const user = await User.findOne({ email }).lean();
   if (user) {
     throw new APIError({
       message: 'Account already exists',
@@ -32,7 +32,7 @@ const register = async (id: string, name: string, email:string, password: string
 };
 
 const login = async (email: string, password: string) => {
-  const user = await User.findOne({ email });
+  const user = await User.findOne({ email }).lean();
   if (!user) {
     throw new APIError({
       message: 'Account not found',
@@ -53,7 +53,7 @@ const login = async (email: string, password: string) => {
 
 const loginWithToken = async (token: string) => {
   const { id } = verifyToken(token);
-  const user = await User.findById(id);
+  const user = await User.findById(id).lean();
   return user;
 };
 
