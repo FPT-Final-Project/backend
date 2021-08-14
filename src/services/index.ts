@@ -6,6 +6,7 @@ import psytestService from './psytest.service';
 import paymentService from './payment.service';
 import appointmentService from './appointment.service';
 import scheduleService from './schedule.service';
+import feedbackService from './feedback.service';
 
 export {
   authService,
@@ -16,4 +17,5 @@ export {
   paymentService,
   appointmentService,
   scheduleService,
+  feedbackService,
 };
