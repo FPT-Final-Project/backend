@@ -7,6 +7,7 @@ import scheduleRoute from './schedule';
 import psytestRoute from './psy_test';
 import { momoController } from '../controllers';
 import appointmentRoute from './appointment';
+import feedbackRoute from './feedback';
 
 const router = express.Router();
 
@@ -18,5 +19,6 @@ router.use('/schedule', scheduleRoute);
 router.use('/psytest', psytestRoute);
 router.use('/payment/momo', momoController.requestFromMomo);
 router.use('/appointment', appointmentRoute);
+router.use('/feedback', feedbackRoute);
 
 export default router;
