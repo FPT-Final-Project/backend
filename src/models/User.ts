@@ -68,6 +68,12 @@ const UserSchema: Schema = new Schema(
       enum: ['patient', 'doctor', 'admin'],
       default: 'patient',
     },
+    bookingTime: {
+      type: Array,
+    },
+    consultingFee: {
+      type: Number,
+    },
     major: {
       type: String,
     },

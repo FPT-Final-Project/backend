@@ -12,13 +12,14 @@ const updateProfile = catchAsync(
   },
 );
 
-const userProfile = catchAsync(async (req: IRequest, res:Response, _:NextFunction) => {
+const userProfile = catchAsync(async (req: IRequest, res: Response, _: NextFunction) => {
   const { id } = req.params;
   const users = await userService.getUserProfile(id);
   res.status(httpStatus.OK).json(users);
 });
+
 const changePassword = catchAsync(
-  async (req: IRequest, res:Response, _:NextFunction) => {
+  async (req: IRequest, res: Response, _: NextFunction) => {
     const { password, newPassword } = req.body;
     await userService.changePassword(req.user, password, newPassword);
     res.status(httpStatus.OK).end();
@@ -26,29 +27,45 @@ const changePassword = catchAsync(
 );
 
 const uploadAvatar = catchAsync(
-  async (req: IRequest, res:Response, _:NextFunction) => {
+  async (req: IRequest, res: Response, _: NextFunction) => {
     const image = (req as any).file;
     const url = await uploadSingle(image);
-    res.status(httpStatus.OK).send({ url, size: image && image.size });
+    res.status(httpStatus.OK).send({ avatar: url, size: image && image.size });
   },
 );
 
 const updateAvatar = catchAsync(
-  async (req: IRequest, res:Response, _:NextFunction) => {
+  async (req: IRequest, res:Response, _: NextFunction) => {
     const { avatar } = req.body;
     const { user } = req;
     const users = await userService.updateAvatar(avatar, user);
     res.status(httpStatus.OK).json(users);
   },
 );
+
 const getMe = catchAsync(
-  async (req: IRequest, res:Response, _:NextFunction) => {
+  async (req: IRequest, res: Response, _: NextFunction) => {
     const { user } = req;
     const userMe = await userService.getMe(user);
     res.status(httpStatus.OK).send(userMe);
   },
 );
 
+const updateBookingTime = catchAsync(
+  async (req: IRequest, res: Response, _: NextFunction) => {
+    const { user } = req;
+    const { bookingTime } = req.body;
+    await userService.updateBookingTime(user._id, bookingTime);
+    res.status(httpStatus.OK).send();
+  },
+);
+
 export default {
-  updateProfile, changePassword, uploadAvatar, updateAvatar, userProfile, getMe,
+  updateProfile,
+  changePassword,
+  uploadAvatar,
+  updateAvatar,
+  userProfile,
+  getMe,
+  updateBookingTime,
 };
