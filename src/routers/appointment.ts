@@ -6,6 +6,7 @@ import { checkUserPatient } from '../utils/checkRole';
 const router = express.Router();
 
 router.get('/', isAuth, appointmentController.getAppointments);
+router.get('/count/all', isAuth, appointmentController.getTotalAppointment);
 router.get('/:id', isAuth, appointmentController.getAppointment);
 router.post('/create', [isAuth, checkUserPatient], appointmentController.makeAnAppointment);
 router.post('/check', [isAuth, checkUserPatient], appointmentController.checkAppointment);
