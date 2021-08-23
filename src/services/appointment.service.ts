@@ -12,6 +12,11 @@ const getAppointment = async (user: IUser, appointmentId: string): Promise<IAppo
   return appointment;
 };
 
+const getTotalAppointment = async () => {
+  const totalAppointments = await Appointment.countDocuments({ isCanceled: false });
+  return totalAppointments;
+};
+
 const getAppointments = async (user: IUser) => {
   const appointments = await Appointment.find({ $or: [{ patientId: user.id }, { doctorId: user.id }] });
   return _.map(
@@ -103,4 +108,5 @@ export default {
   makeAnAppointment,
   cancelAnAppointment,
   checkAppointment,
+  getTotalAppointment,
 };

@@ -22,6 +22,7 @@ const register = async (id: string, name: string, email:string, password: string
     email,
     role,
     password: passwordHashed,
+    consultingFee: 500000,
     ...(id && { _id: new ObjectId(id) }),
   };
 
