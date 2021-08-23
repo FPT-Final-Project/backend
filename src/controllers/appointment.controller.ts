@@ -14,6 +14,11 @@ const getAppointments = catchAsync(async (req: Request, res: Response, _:NextFun
   res.status(httpStatus.OK).json(appointments);
 });
 
+const getTotalAppointment = catchAsync(async (req: Request, res: Response, _:NextFunction) => {
+  const totalAppointments = await appointmentService.getTotalAppointment();
+  res.status(httpStatus.OK).json(totalAppointments);
+});
+
 const makeAnAppointment = catchAsync(async (req: Request, res: Response, _:NextFunction) => {
   const {
     patientId, patientName, name, startOfAppointment, endOfAppointment, doctorId, doctorName,
@@ -50,4 +55,5 @@ export default {
   makeAnAppointment,
   cancelAnAppointment,
   checkAppointment,
+  getTotalAppointment,
 };
